@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816185526) do
+ActiveRecord::Schema.define(:version => 20130829194227) do
 
   create_table "categories", :force => true do |t|
     t.string   "addcategory", :limit => 30, :null => false
@@ -49,15 +49,14 @@ ActiveRecord::Schema.define(:version => 20130816185526) do
   end
 
   create_table "histories", :force => true do |t|
-    t.string   "title",             :limit => 70, :null => false
-    t.string   "description"
-    t.integer  "category",                        :null => false
-    t.string   "note"
-    t.text     "ahistory",                        :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.string   "title",             :limit => 70,  :null => false
+    t.text     "description",       :limit => 250
+    t.text     "note",              :limit => 250
+    t.text     "ahistory",                         :null => false
+    t.integer  "user_id",                          :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "classification_id"
-    t.integer  "favorite_id"
   end
 
   create_table "rates", :force => true do |t|

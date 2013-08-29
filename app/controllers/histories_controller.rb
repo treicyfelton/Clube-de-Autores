@@ -58,7 +58,7 @@ class HistoriesController < ApplicationController
   def destroy
     @history = History.find(params[:id])
     @history.destroy
-    redirect_to :back
+    redirect_to "/all/histories"
   end
 
   

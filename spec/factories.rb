@@ -24,9 +24,10 @@ FactoryGirl.define do
    factory :history do
      title 'Branca de Neve'
      description 'Uma garota, bla bla bla'
-     classification 'Livre'
      note 'bla bla bla'
      ahistory 'era uma vez...'
+     classification_id '1'
+     user_id '11'
    end
 
    factory :category do

@@ -20,8 +20,8 @@ describe UsersController do
   end
 
   describe 'new' do
-  	
-  	it 'should get new' do
+    
+    it 'should get new' do
       get :new
       response.should be_success
     end
@@ -44,9 +44,8 @@ describe UsersController do
 
   describe 'edit' do
 
-    it 'should update user' do
-      @user
-      controller.should_receive(:userLogged?)
+    it 'should redirect user' do
+      login(@user)
       put :update, id: @user, user: { born_at: @user.born_at, email: @user.email, hobby: @user.hobby, name: @user.name, nick: @user.nick, situation: @user.situation }
       response.should redirect_to user_path
     end

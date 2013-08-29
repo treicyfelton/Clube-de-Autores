@@ -5,6 +5,7 @@ describe Admin::UsersController do
   before :each do
     @admin = FactoryGirl.create(:admin)
     @user = FactoryGirl.create(:user)
+    @history = FactoryGirl.create(:history)
   end
 
   describe 'get index' do
@@ -16,7 +17,7 @@ describe Admin::UsersController do
     end
 
     it 'renders the index view' do
-      controller.should_receive(:toIndex)
+      login(@admin)
       get :index
       response.should render_template :index
     end 
@@ -27,7 +28,8 @@ describe Admin::UsersController do
     end
 
     it 'should redirect user to index' do
-      get :index, id: @user, user: FactoryGirl.attributes_for(:user)
+      login(@user)
+      get :index
       response.should redirect_to root_url
     end
 
@@ -36,8 +38,9 @@ describe Admin::UsersController do
   describe 'edit' do
 
     it 'admin should update user' do
-      put :update, id: @user, user: { name: @user.name, admin: @user.admin }
-      response.should redirect_to "/"
+      login(@admin)
+      put :update, id: @user, user: { name: @user.name }
+      response.should redirect_to "/admin/users"
     end
   end
 
@@ -45,14 +48,16 @@ describe Admin::UsersController do
   describe 'delete' do
 
     it "redirects to users" do
+      login(@admin)
       delete :destroy, id: @user 
-      response.should redirect_to "/"
+      response.should redirect_to "/admin/users"
     end 
 
-    it "deletes the user" do
+    it "admin deletes the user" do
+      login(@admin)
       expect{ 
         delete :destroy, id: @user 
-        }.to change(User,:count).by(0) 
+        }.to change(User,:count).by(-1) 
     end
   end
 end
