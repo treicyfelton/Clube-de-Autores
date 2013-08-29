@@ -1,0 +1,16 @@
+= form_for(@rule) do |f|
+  - if @rule.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@rule.errors.count, "error")
+        prohibited this rule from being saved:
+      %ul
+        - @rule.errors.full_messages.each do |msg|
+          %li= msg
+  .field{:style => "width:700px"}
+    %p{:align => "left"}
+      = f.label :uprules
+      \:
+    = f.text_area :uprules, :cols => 100, :rows => 20
+  .actions
+    = f.submit

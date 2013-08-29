@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+admin:
+  name: Treicy Felton
+  email: treicyfelton@msn.com
+  nick: treicyfelton
+  password: 123456
+  born_at: 2013-02-14
+  situation: Testando
+  hobby: Testar esse sistema
+  admin: true
+
+user:
+  name: Lucas Anjos
+  email: lucas@msn.com
+  nick: lucas
+  password: 123456
+  born_at: 2013-02-11
+  situation: Off
+  hobby: Programar
+  admin: false

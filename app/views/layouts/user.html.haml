@@ -1,0 +1,32 @@
+%html
+  %head
+    %title Clube De Autores
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %center
+      %header
+        #top 
+          Logado como:
+          - u = User.find(session[:id])
+          = link_to session[:name], "/users/#{u.nick}"
+          | 
+          =link_to "Sair?", sair_path
+          .jimgMenu
+            %ul
+              %li.home
+                %a{:href => "/home"} Landscapes
+              %li.categories
+                %a{:href => "/all/categories"} People
+              %li.rules
+                %a{:href => "/rules/1"} Nature
+              %li.send
+                %a{:href => "/nova_historia"} Abstract
+              %li.index
+                %a{:href => "/"} Urban
+      = yield
+    %footer
+      %center
+        #footer
+          = link_to "Contato", "/contacts/new"           

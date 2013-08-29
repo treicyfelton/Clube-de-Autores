@@ -1,0 +1,24 @@
+#background
+  %h2
+    Filtrando histórias de 
+    = @category.addcategory
+    %br
+    = paginate @histories
+
+   
+  -@histories.each do |history|
+    #historyList
+      = link_to history.title, history
+      %br
+      por 
+      - u = User.find(history.user_id)
+      = link_to u.name, u
+      %br
+      Categorias:
+      - Category.find(history.category_ids).each do |ct|
+        = ct.addcategory
+      %br
+      Classificação:
+      - cl = Classification.find(history.classification_id)
+      = cl.name
+

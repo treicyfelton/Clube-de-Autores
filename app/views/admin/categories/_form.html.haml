@@ -1,0 +1,12 @@
+= form_for [:admin, @category] do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
+  %table.form
+    %tr
+      %td.label Nome da Categoria* :      
+      %td= f.text_field :addcategory
+  .actions
+    = f.submit

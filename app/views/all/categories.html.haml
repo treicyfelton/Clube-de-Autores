@@ -1,0 +1,9 @@
+#background
+  %h2
+    Categorias de histórias 
+  %br  
+  - Category.find(:all).each do |category|
+    #categoryList
+      \=>
+      = link_to category.addcategory, histories_category_path(category)
+      %br

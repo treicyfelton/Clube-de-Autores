@@ -1,0 +1,59 @@
+#background
+  #highlights
+    %table
+      %th
+        %img{:src => "crown.png"}
+        TOP HISTÓRIAS 
+        %img{:src => "crown.png"}
+        %tr
+          %td
+            - for t in (0..10)
+              - if @top[t]
+                = link_to @top[t], "histories/#{@top_id[t]}"
+                %br
+             
+    %br
+    %br
+    %table
+      %th
+        %img{:src => "crown.png"}
+        TOP USUÁRIOS 
+        %img{:src => "crown.png"}
+        %tr
+          %td
+            - for a in (0..10)
+              -if @topauthors[a]
+                = link_to @topauthors[a], "users/#{@topauthors_nick[a]}"
+                %br
+
+
+  #slide
+    #slideshowHolder
+      %img{:alt => "Não pague micos, evite ser reportado: leia as regras!", :src => "img1.jpg"}
+        %a{:href => "/rules/1"}
+      %img{:alt => "Cadastre-se agora!", :src => "img2.jpg"}
+        %a{:href => "/users/new"}
+      %img{:alt => "Publique uma nova história!", :src => "img3.jpg"}
+        %a{:href => "/nova_historia"} 
+
+  #lasts
+    %table
+      %tr
+        %td.title E as ultimas...
+        %td.title
+      %tr
+        %td.lastUserTitle
+          Ultimo usuário cadastrado:
+        %td.lastHistoryTitle
+          Ultima história publicada:
+      %tr      
+        %td.lastUser
+          - if @lastUser
+            = link_to @lastUser.name, "/users/#{@lastUser.id}"
+          - else
+            Ninguém ;(  
+        %td.lastHistory
+          - if @lastHistory
+            = link_to @lastHistory.title, "/histories/#{@lastHistory.id}"
+          - else
+            Nenhuma ;(  

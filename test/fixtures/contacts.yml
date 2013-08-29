@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ctype: MyString
+  subject: MyString
+  cemail: MyString
+  link: MyString
+  message: MyText
+
+two:
+  ctype: MyString
+  subject: MyString
+  cemail: MyString
+  link: MyString
+  message: MyText

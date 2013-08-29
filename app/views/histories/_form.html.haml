@@ -1,0 +1,30 @@
+= form_for(@history) do |f|
+  - if @history.errors.any?
+    #error_explanation
+      %ul
+        - @history.errors.full_messages.each do |msg|
+          %li= msg
+  %table.form
+    %tr
+      %td.label Título* :
+      %td= f.text_field :title
+    %tr
+      %td.label Descrição:  
+      %td= f.text_field :description
+    %tr
+      %td.label Classificação* :  
+      %td= f.select :classification_id, @classifications.map {|c| [c.name,c.id]}
+    %tr
+      %td.label Categorias* :
+      %td
+        - Category.find(:all).each do |c|
+          = check_box_tag 'history[category_ids][]', c.id, @history.categories.include?(c)
+          = c.addcategory
+    %tr
+      %td.label Comentário do Autor:      
+      %td= f.text_field :note
+    %tr
+      %td.label História* :  
+      %td= f.text_area :ahistory, cols:"50"
+  .actions
+    = f.submit

@@ -1,0 +1,24 @@
+= form_for(@contact) do |f|
+  - if @contact.errors.any?
+    #error_explanation
+      %ul
+        - @contact.errors.full_messages.each do |msg|
+          %li= msg
+  %table.form
+    %tr
+      %td.label Tipo de contato* :
+      %td= select(:contact, :ctype, options_for_select([['Sugestão'], ['Problema no site'], ['Reportar história']]))
+    %tr
+      %td.label Assunto* :  
+      %td= f.text_field :subject
+    %tr
+      %td.label Email* :  
+      %td= f.text_field :cemail
+    %tr
+      %td.label Link:  
+      %td= f.text_field :link
+    %tr
+      %td.label Mensagem* :  
+      %td= f.text_area :message
+  .actions
+    = f.submit

@@ -1,0 +1,27 @@
+%center
+  %div.max
+    %h2.subtitle
+      Filtrando histórias de 
+      = @category.addcategory
+      %br
+      = paginate @histories
+
+   
+    - @category.histories.each do |history|
+      %br
+      %div.table
+        %div.divcontents
+          = link_to history.title, history, :class=>"contrast"
+          %br
+          por 
+          - u = User.find(history.user_id)
+          = link_to u.name, u
+          %br
+          Categorias:
+          - Category.find(history.category_ids).each do |ct|
+            = ct.addcategory
+          %br
+          Classificação:
+          - cl = Classification.find(history.classification_id)
+          = cl.name
+

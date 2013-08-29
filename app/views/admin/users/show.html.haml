@@ -1,0 +1,35 @@
+%div{:style => "width:700px", :align => "center" }
+  %div{:align => "left"}
+    %table
+      %th
+        Sobre o usuário
+        %tr
+          %td
+            %p
+              %b
+                = User.human_attribute_name(:name)
+                \:
+              = @user.name
+            %p
+              %b
+                = User.human_attribute_name(:born_at)
+                \:
+              = @user.born_at
+            %p
+              %b
+                = User.human_attribute_name(:situation)
+                \:
+              = @user.situation
+            %p
+              %b
+                = User.human_attribute_name(:hobby)
+                \:
+              = @user.hobby
+  %div{:align => "right"}
+    %table
+      %th
+        Todas Histórias de #{@user.nick}
+        - @histories.each do |h|
+          %tr
+            %td
+              = h.title

@@ -1,0 +1,15 @@
+= form_for [:admin, @user] do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  %table.form
+    %tr
+      %td.label Nome* :
+      %td= f.text_field :name
+    %tr
+      %td.label Administrador  
+      %td= check_box_tag :admin  
+  .actions
+    = f.submit

@@ -1,0 +1,23 @@
+#background
+  %h2 
+    Perfil do usuário: #{@user.name}
+  #profile
+    %table
+      %tr
+        %td Nome
+        %td Data de nascimento
+        %td Situação
+        %td Passatempo
+      %tr  
+        %td= @user.name
+        %td= @user.born_at
+        %td= @user.situation
+        %td= @user.hobby
+    
+    %table
+      %th
+        Todas Histórias de #{@user.nick}
+        - @histories.each do |h|
+          %tr
+            %td
+              = link_to h.title, h, class:"colored"

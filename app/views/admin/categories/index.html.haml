@@ -1,0 +1,11 @@
+#background
+  %center
+    %h2 Todas categorias
+    = link_to 'Adicionar nova categoria', new_admin_category_path, class:"colored"
+    #categoryList
+      - @categories.each do |category|
+        %br
+        = category.addcategory
+        #categoryList
+          = button_to 'Editar', edit_admin_category_path(category), method: :get
+          = button_to 'Apagar', "/admin/categories/#{category.id}", method: :delete

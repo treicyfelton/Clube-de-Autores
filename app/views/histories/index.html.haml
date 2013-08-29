@@ -1,0 +1,9 @@
+%h2 
+  Todas histórias publicadas
+%table
+- @histories.each do |history|
+  %tr
+    %td
+      = link_to history.title, history
+    %td
+      = link_to 'Deletar', history, method: :delete, data: { confirm: 'Ao deletar essa história ela será apagada definitivamente, tem certeza?' }

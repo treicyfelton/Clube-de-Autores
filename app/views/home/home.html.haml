@@ -1,0 +1,43 @@
+#background
+  #home
+    %h2
+      Página do usuário:
+      = session[:name]
+    #homeGroup
+      #homeButton
+        - u = User.find(session[:id])
+        = link_to image_tag("perfil.png"), url_for("/users/#{u.id}")
+      #homeButton 
+        = link_to image_tag("editar.png"), url_for("/users/#{u.id}/edit")
+      #homeButton
+        = link_to image_tag("novahistoria.png"), url_for("/nova_historia")
+      #homeButton
+        = link_to image_tag("yours.png"), url_for("/all/histories")  
+      #stop 
+    
+    #homesTables
+      %h2.tabletitle
+        Histórias atualizadas recentemente
+      %h2.tabletitle
+        Favoritos  
+      
+    #homeLists
+      %table
+        %tr
+          %td.groupHome
+            %table.home
+              %tr
+                %td.home
+                  - for i in (0..5)
+                    - if @upHistories[i]
+                      = link_to @upHistories[i], "/histories/#{@upHistoriesId[i]}", class:"colored"
+                      %br
+          %td.groupHome    
+            %table.home
+              %tr
+                %td.home
+                  - for p in (0..5)
+                    - if @favHistories[p]
+                      = link_to @favHistories[p], "/histories/#{@hId[p]}", class:"black"
+                      = link_to 'Excluir', {:controller=>"favorites", :action=>"destroy",:id => @favId[p]}, method: :delete, class:"colored"
+                      %br  

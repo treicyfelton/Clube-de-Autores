@@ -1,0 +1,39 @@
+%center
+  %h2
+    Mensagem de Contato
+  %h3
+    #{Time.now.strftime("%d/%m/%Y %H:%M")}
+%br
+%center  
+  ____________________________________
+%br
+
+Tipo:
+%br
+#{@contact['ctype']}
+%br
+%br
+
+Assunto:
+%br
+#{@contact['subject']}
+%br
+%br
+
+Email:
+%br
+#{@contact['cemail']}
+%br
+%br
+
+Link:
+%br
+#{@contact['link']}
+%br
+%br
+
+Mensagem:
+%br
+#{@contact['message']}
+%br
+%br

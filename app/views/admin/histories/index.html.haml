@@ -1,0 +1,12 @@
+#background
+  %h2 Todas as histórias
+  %table.listing
+    %tr
+      %th.list Título
+      %th.list Autor
+      %th
+    - @histories.each do |history|
+      %tr
+        %td= link_to history.title, history, class:"colored"
+        %td= link_to User.find(history.user_id).name, "/users/#{history.user_id}", class:"colored"
+        %td= button_to 'Deletar', "/admin/histories/#{history.id}", method: :delete

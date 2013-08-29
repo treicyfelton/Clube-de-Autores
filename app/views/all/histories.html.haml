@@ -1,0 +1,12 @@
+#background
+  %h2 
+    Suas histórias
+  %table.listing
+    - History.where("user_id == #{session[:id]}").each do |history| 
+      %tr
+        %td
+          = link_to history.title, history, class:"colored"
+        %td
+          = button_to "Editar", "/histories/#{history.id}/edit", method: :get  
+        %td
+          = button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete

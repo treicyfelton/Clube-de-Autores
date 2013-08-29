@@ -1,0 +1,21 @@
+%h1 Listing users
+%table
+  %tr
+    %th Name
+    %th Email
+    %th Nick
+    %th Born at
+    %th Admin
+    %th
+    %th
+    %th
+  - @users.each do |user|
+    %tr
+      %td= link_to user.name, user
+      %td= user.email
+      %td= user.nick
+      %td= user.born_at
+      %td= user.admin
+      %td= link_to 'Editar', edit_user_path(user)
+      %td= link_to 'Excluir', user, method: :delete, data: { confirm: 'Tem certeza que deseja excluir esse usuário?' }
+%br/

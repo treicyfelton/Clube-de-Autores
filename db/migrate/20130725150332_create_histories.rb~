@@ -1,0 +1,14 @@
+class CreateHistories < ActiveRecord::Migration
+  def change
+    create_table :histories do |t|
+      t.string :title, :limit=>70, :null=>false
+      t.string :description
+      t.integer :classification, :null=>false
+      t.integer :category, :null=>false
+      t.string :note
+      t.text :ahistory, :null=>false
+
+      t.timestamps
+    end
+  end
+end

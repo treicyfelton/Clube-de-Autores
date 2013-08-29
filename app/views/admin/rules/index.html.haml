@@ -1,0 +1,21 @@
+= form_for(@rules) do |f|
+  .field{:style => "width:700px"}
+    %p{:align => "left"}
+      = f.label :uprules
+      \:
+    = f.text_area :uprules, :cols => 100, :rows => 20
+  .actions
+    = f.submit
+%h1 Listing rules
+%table
+  %tr
+    %th Uprules
+    %th
+    %th
+    %th
+  - @rules.each do |rule|
+    %tr
+      %td= rule.uprules
+      %td= link_to 'Show', rule
+      %td= link_to 'Edit', edit_rule_path(rule)
+%br/

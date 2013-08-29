@@ -1,0 +1,11 @@
+%center
+  %div.max
+    %h2.subtitle Todas categorias
+    = link_to 'Adicionar nova categoria', new_category_path
+    %div.divcontents
+      - @categories.each do |category|
+        %br
+        = category.addcategory
+        %div
+          = link_to 'Editar', edit_category_path(category)
+          = link_to 'Apagar', category, method: :delete, data: { confirm: 'Deseja apagar essa categoria?' }

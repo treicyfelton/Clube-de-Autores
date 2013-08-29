@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @classification.name %>
+</p>
+
+<p>
+  <b>Min age:</b>
+  <%= @classification.min_age %>
+</p>
+
+
+<%= link_to 'Edit', edit_classification_path(@classification) %> |
+<%= link_to 'Back', classifications_path %>
