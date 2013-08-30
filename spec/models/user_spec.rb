@@ -85,10 +85,6 @@ end
     user.should respond_to :plain_password=
   end
 
-  it "should have attribute to return empty password" do
-    FactoryGirl.build(:user, plain_password: '').should be_valid
-  end
-
   it "should save the encrypt password in password" do
     user = FactoryGirl.build(:user, plain_password: '123456')
     user.password.should eq User.encrypt_password('123456')

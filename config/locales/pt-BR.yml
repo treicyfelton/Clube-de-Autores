@@ -240,6 +240,8 @@ pt-BR:
         ctype: "Tipo de Contato"
         subject: "Assunto"
         cemail: "Email"
+        link: "Link"
+        message: "Mensagem"
   views:
     pagination:
       previous: "&laquo;"

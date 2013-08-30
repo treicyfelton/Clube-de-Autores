@@ -51,6 +51,15 @@ describe HistoriesController do
       response.should be_success
     end
 
+    it 'should create history' do
+      login(@user)
+      @new_history = History.new(@history.attributes.except("id", "created_at","updated_at"))
+      @new_history.title = ""
+      @new_history.ahistory = ""
+      post :create, history: { title: @history.title, ahistory: @history.ahistory }
+      response.should_not be_success
+    end
+
     it 'renders the new view' do
       login(@user)
       get :new, id: @user

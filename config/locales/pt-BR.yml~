@@ -240,10 +240,10 @@ pt-BR:
         ctype: "Tipo de Contato"
         subject: "Assunto"
         cemail: "Email"
-    views:
-      pagination:
-        previous: "&laquo; Anterior"
-        next: "Próxima &raquo;"
-        last: "Última"
-        first: "Primeira"
-        truncate: "..."
+  views:
+    pagination:
+      previous: "&laquo;"
+      next: "&raquo;"
+      last: ""
+      first: ""
+      truncate: "..."

@@ -10,11 +10,14 @@ gem 'sqlite3'
 group :test do
   gem 'rspec-rails', '2.14.0'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'capybara', '2.1.0'
+  # gem 'capybara-webkit', '1.0.0'
 end
 
 gem 'haml'
 gem 'kaminari'
-gem "recaptcha", require: "recaptcha/rails"
+gem 'recaptcha', require: "recaptcha/rails"
+
 
 
 # Gems used only for assets and not required

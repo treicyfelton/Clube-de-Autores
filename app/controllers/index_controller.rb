@@ -25,7 +25,7 @@ class IndexController < ApplicationController
   	@lastHistory = History.last
   end
 
-	def index
+  def index
 		tops
   end
 end
