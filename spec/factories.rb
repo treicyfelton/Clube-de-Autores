@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 FactoryGirl.define do 
   factory :user do
     name 'Diego Oliveira'
@@ -28,6 +30,16 @@ FactoryGirl.define do
      ahistory 'era uma vez...'
      classification_id '1'
      user_id '11'
+   end
+   
+   factory :moderated_history, class: History do
+     title 'Chapeuzinho Vermelho'
+     description 'Uma garota, bla bla bla, o lobo bla bla bla a véia bla bla bla'
+     note 'bla bla bla'
+     ahistory 'era uma vez...'
+     classification_id '1'
+     user_id '11'
+     moderate true
    end
 
    factory :category do

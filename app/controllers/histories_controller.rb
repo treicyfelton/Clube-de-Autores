@@ -2,7 +2,7 @@
 class HistoriesController < ApplicationController
   respond_to :html
   before_filter :toIndex, only: [:index]
-  before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy, :rate, :favoriteChecked]
   before_filter :load_classifications, only: [:new, :edit, :update, :create]
   layout :selectlayout  
   
@@ -13,23 +13,19 @@ class HistoriesController < ApplicationController
 
   def show
     @history = History.find(params[:id]) rescue nil
-    if !@history.moderate
+    if !@history || !@history.moderate
       redirect_to "/"
-    else
-      if @history
-        if session[:id]
-          @user = User.find(session[:id])
-          if !@user.allowed_history(@history)
-            redirect_to "/"
-            return
-          else
-            respond_with @history
-          end
-        end
-      else
+      return
+    end
+
+    if session[:id]
+      @user = User.find(session[:id])
+      if !@user || !@user.allowed_history(@history)
         redirect_to "/"
+        return
       end
     end
+    respond_with @history
   end
 
   def new
@@ -67,64 +63,24 @@ class HistoriesController < ApplicationController
     redirect_to "/all/histories"
   end
 
-  
-
   def rate
-    if session[:id]
-      @newrate = params[:rate]
-      @newhistory = params[:history]
-      @rating = Rate.new
-      @rating.user_id = session[:id]
-      @rating.urate = @newrate.to_i
-      @rating.history_id = @newhistory.to_i
-      @h = History.find(@newhistory)
-      @rating.owner = @h.user_id
-      voted?
-      if @a == 1
-        @rating.save
-      end
-    else
-      redirect_to "/entrar"
+    @history = History.find(params[:history]) rescue nil
+    if !@history
+      redirect_to "/"
+      return
     end
+    @history.rate(session[:id],params[:rate].to_i)
     render :text => "#{params[:rate]}"
   end
 
-  def voted?
-    @a = []
-    @a = Rate.where("history_id == #{@newhistory}").where("user_id == #{session[:id]}")
-    if @a == []
-      @a = 1
-    else
-      if @a != []
-        @a = 0
-      end
-    end
-  end
-
-
   def favoriteChecked
-    @newcheck = params[:op]
-    @newh = params[:h]
-    @faved = Favorite.new
-    @faved.user_id = session[:id]
-    @faved.history_id = @newh.to_i
-    faved?
-    if @b == 1
-      @faved.save
+    @history = History.find(params[:h]) rescue nil
+    if !@history
+      redirect_to "/"
+      return
     end
+    @history.favorite(session[:id])
     render :text => "#{params[:favoriteChecked]}"
-  end
-
-  def faved?
-    @b ||= []
-    @b = Favorite.where("history_id == #{@newh}").where("user_id == #{session[:id]}")
-    if @b == []
-      @b = 1
-    else
-      if @b != []
-        @b = 0
-      end
-    end
   end
 
   private
