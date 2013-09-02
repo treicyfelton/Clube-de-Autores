@@ -13,20 +13,25 @@ class HistoriesController < ApplicationController
 
   def show
     @history = History.find(params[:id]) rescue nil
-    if @history
-      if session[:id]
-        @user = User.find(session[:id])
-        if !@user.allowed_history(@history)
-          redirect_to "/"
-          return
-        else
-          respond_with @history
-        end
-      end
-    else
+    if !@history.moderate
       redirect_to "/"
+    else
+      if @history
+        if session[:id]
+          @user = User.find(session[:id])
+          if !@user.allowed_history(@history)
+            redirect_to "/"
+            return
+          else
+            respond_with @history
+          end
+        end
+      else
+        redirect_to "/"
+      end
     end
   end
+
   def new
     @history = History.new
     respond_with @history
@@ -44,6 +49,7 @@ class HistoriesController < ApplicationController
 
   def create
     @history = currentUser.histories.new(params[:history])
+    @history.moderate = false
     @history.save
     respond_with @history
   end

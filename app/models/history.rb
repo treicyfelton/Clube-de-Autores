@@ -6,7 +6,7 @@ class History < ActiveRecord::Base
 	has_many :favorites, :dependent => :destroy
 	has_many :rates, :dependent => :destroy
 
-	attr_accessible :ahistory, :description, :note, :title, :category_ids, :classification_id, :user_id
+	attr_accessible :ahistory, :description, :note, :title, :category_ids, :classification_id, :user_id, :moderate
 
 	validates :title, presence: true, length: {maximum:70}
 	validate :description, allow_blank: true, allow_nil: false
