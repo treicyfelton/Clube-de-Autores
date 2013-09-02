@@ -45,4 +45,17 @@ describe History do
     history = FactoryGirl.build(:history, ahistory: nil)
     history.should_not be_valid
   end
+
+  context "rating" do
+    it "should have a method to rate it" do
+      history = FactoryGirl.build(:history)
+      history.should respond_to :rate 
+    end
+
+    it "should insert a new rating" do
+      user    = FactoryGirl.create(:user)
+      history = FactoryGirl.create(:history)
+      expect{history.rate(user.id,10)}.to change{Rate.count}.by(1)
+    end
+  end
 end

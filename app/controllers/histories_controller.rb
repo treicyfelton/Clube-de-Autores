@@ -64,33 +64,14 @@ class HistoriesController < ApplicationController
   end
 
   def rate
-    @newrate           = params[:rate]
-    @newhistory        = params[:history]
-    @rating            = Rate.new
-    @rating.user_id    = session[:id]
-    @rating.urate      = @newrate.to_i
-    @rating.history_id = @newhistory.to_i
-    @h                 = History.find(@newhistory)
-    @rating.owner      = @h.user_id
-    voted?
-    if @a == 1
-      @rating.save
+    @history = History.find(params[:history]) rescue nil
+    if !@history
+      redirect_to "/"
+      return
     end
+    @history.rate(session[:id],params[:rate].to_i)
     render :text => "#{params[:rate]}"
   end
-
-  def voted?
-    @a = []
-    @a = Rate.where("history_id == #{@newhistory}").where("user_id == #{session[:id]}")
-    if @a == []
-      @a = 1
-    else
-      if @a != []
-        @a = 0
-      end
-    end
-  end
-
 
   def favoriteChecked
     @newcheck = params[:op]
