@@ -2,7 +2,7 @@
 class HistoriesController < ApplicationController
   respond_to :html
   before_filter :toIndex, only: [:index]
-  before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy, :rate]
   before_filter :load_classifications, only: [:new, :edit, :update, :create]
   layout :selectlayout  
   
@@ -63,24 +63,18 @@ class HistoriesController < ApplicationController
     redirect_to "/all/histories"
   end
 
-  
-
   def rate
-    if session[:id]
-      @newrate = params[:rate]
-      @newhistory = params[:history]
-      @rating = Rate.new
-      @rating.user_id = session[:id]
-      @rating.urate = @newrate.to_i
-      @rating.history_id = @newhistory.to_i
-      @h = History.find(@newhistory)
-      @rating.owner = @h.user_id
-      voted?
-      if @a == 1
-        @rating.save
-      end
-    else
-      redirect_to "/entrar"
+    @newrate           = params[:rate]
+    @newhistory        = params[:history]
+    @rating            = Rate.new
+    @rating.user_id    = session[:id]
+    @rating.urate      = @newrate.to_i
+    @rating.history_id = @newhistory.to_i
+    @h                 = History.find(@newhistory)
+    @rating.owner      = @h.user_id
+    voted?
+    if @a == 1
+      @rating.save
     end
     render :text => "#{params[:rate]}"
   end
