@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
   has_many :rates, :dependent => :destroy
 
-  attr_protected :password, :admin
+  attr_protected :password, :admin, :moderator
   attr_accessible :born_at, :email, :hobby, :name, :nick, :situation, :plain_password
    validates :name, presence: true, length: {maximum:50}, format: {with: /^[a-zA-ZçÇà-úÀ-Ú ]+$/}
    validates :email, presence: true, uniqueness: true, format: {with:/^[a-zA-ZçÇ0-9_.-]+@([a-zA-ZçÇ0-9_ -]+\.)+[a-zA-Z]{2,4}$/}

@@ -1,0 +1,9 @@
+#background
+  %h2 Histórias com moderação pendente
+
+  %table
+  - History.where("moderate = ?", false).each do |ph|
+    %tr
+      %td= ph.title
+      %td= button_to "Mostrar história", "/"
+    %br

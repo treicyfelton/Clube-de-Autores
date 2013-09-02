@@ -9,10 +9,11 @@ describe 'Login' do
     end
 
     it 'should login' do
-      visit "/home"
+      visit "/entrar"
       fill_in 'email', with: @user.email
-      fill_in 'password', with: @user.password
+      fill_in 'password', with: '123456'
       click_button 'Entrar'
+      current_path.should == '/home'
     end
 
     it 'should not login with wrong password' do

@@ -11,6 +11,10 @@ class UserPresenter
 		@user.admin ? "Sim" : "Não"
 	end
 
+	def moderator
+		@user.moderator ? "Sim" : "Não"
+	end
+
 	def born_at
 		I18n.l(@user.born_at)
 	end
@@ -18,11 +22,6 @@ class UserPresenter
 	def password
 		"*"*10
 	end
-
-	# def image
-	# 	return "" if !@user.image
-	# 	helpers.image_tag(@user.image.to_s) + "<br style='clear:both'/>".html_safe
-	# end
 
 	def to_s
 		@user.id

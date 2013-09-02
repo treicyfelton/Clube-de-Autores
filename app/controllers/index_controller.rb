@@ -22,7 +22,7 @@ class IndexController < ApplicationController
 
   def last
   	@lastUser = User.last
-  	@lastHistory = History.last
+  	@lastHistory = History.where("moderate = ?", true).last
   end
 
   def index

@@ -9,21 +9,27 @@ describe HistoriesController do
   end
  
   describe 'show' do
+    it "should redirect if not a moderated history" do
+      get :show, id: @history
+      response.should redirect_to "/"
+    end
 
-    it 'should show history' do
+    it 'should show moderated history' do
+      @history = FactoryGirl.create(:moderated_history)
       get :show, id: @history
       response.should be_success
     end
 
     it 'renders the show view' do
+      @history = FactoryGirl.create(:moderated_history)
       get :show, id: @history
       response.should render_template :show
     end 
   end
 
   describe 'new' do
-  	
-  	it 'should not get new history' do
+    
+    it 'should not get new history' do
       get :new
       response.should_not be_success
     end
