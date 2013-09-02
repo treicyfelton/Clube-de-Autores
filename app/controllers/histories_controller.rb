@@ -2,7 +2,7 @@
 class HistoriesController < ApplicationController
   respond_to :html
   before_filter :toIndex, only: [:index]
-  before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy, :rate]
+  before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy, :rate, :favoriteChecked]
   before_filter :load_classifications, only: [:new, :edit, :update, :create]
   layout :selectlayout  
   
@@ -74,28 +74,13 @@ class HistoriesController < ApplicationController
   end
 
   def favoriteChecked
-    @newcheck = params[:op]
-    @newh = params[:h]
-    @faved = Favorite.new
-    @faved.user_id = session[:id]
-    @faved.history_id = @newh.to_i
-    faved?
-    if @b == 1
-      @faved.save
+    @history = History.find(params[:h]) rescue nil
+    if !@history
+      redirect_to "/"
+      return
     end
+    @history.favorite(session[:id])
     render :text => "#{params[:favoriteChecked]}"
-  end
-
-  def faved?
-    @b ||= []
-    @b = Favorite.where("history_id == #{@newh}").where("user_id == #{session[:id]}")
-    if @b == []
-      @b = 1
-    else
-      if @b != []
-        @b = 0
-      end
-    end
   end
 
   private

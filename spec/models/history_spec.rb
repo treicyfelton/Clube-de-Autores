@@ -58,4 +58,17 @@ describe History do
       expect{history.rate(user.id,10)}.to change{Rate.count}.by(1)
     end
   end
+
+  context "favorite" do
+    it "should have a method to favorite it" do
+      history = FactoryGirl.build(:history)
+      history.should respond_to :favorite 
+    end
+
+    it "should insert a new favorite" do
+      user    = FactoryGirl.create(:user)
+      history = FactoryGirl.create(:history)
+      expect{history.favorite(user.id)}.to change{Favorite.count}.by(1)
+    end
+  end
 end

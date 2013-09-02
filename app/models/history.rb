@@ -17,4 +17,9 @@ class History < ActiveRecord::Base
     return false if rates.where(user_id: user_id).size>0 
     rates << Rate.create!(history_id: self.id, user_id: user_id, urate: urate, owner: self.user_id)
   end
+
+  def favorite(user_id)
+    return false if favorites.where(user_id: user_id).size>0 
+    favorites << Favorite.create!(history_id: self.id, user_id: user_id)
+  end
 end
