@@ -28,8 +28,8 @@ describe HistoriesController do
   end
 
   describe 'new' do
-    
-    it 'should not get new history' do
+  	
+  	it 'should not get new history' do
       get :new
       response.should_not be_success
     end

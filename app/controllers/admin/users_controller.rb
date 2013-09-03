@@ -19,7 +19,6 @@ layout :selectlayout
     @user = User.find(params[:id])
     flash[:notice] = "Usuário atualizado com sucesso!" if @user.update_attributes(params[:user])
     @user.update_attribute(:admin, params[:admin]) if session[:admin]
-    @user.update_attribute(:moderator, params[:moderator]) if session[:admin]
     redirect_to admin_users_path
   end
 

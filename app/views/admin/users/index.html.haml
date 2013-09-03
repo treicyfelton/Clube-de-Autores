@@ -6,19 +6,16 @@
       %th Email
       %th Nick
       %th Data de nascimento
-      %th Moderador
       %th Administrador
       %th
       %th
       %th
     - @users.each do |user|
-    - presenter = UserPresenter.new(user)
       %tr
         %td= link_to user.name, user, class:"colored"
         %td= user.email
         %td= user.nick
         %td= user.born_at
-        %td= presenter.moderator
-        %td= presenter.admin
+        %td= user.admin
         %td= button_to 'Editar', edit_admin_user_path(user), method: :get
         %td= button_to 'Excluir', "/admin/users/#{user.id}", method: :delete

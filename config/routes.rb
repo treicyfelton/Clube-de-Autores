@@ -37,5 +37,4 @@ ClubeDeAutores::Application.routes.draw do
   get "admin/home"
   get "all/categories"
   get "all/histories"
-  get "all/pending"
 end
