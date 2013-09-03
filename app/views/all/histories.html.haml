@@ -1,6 +1,8 @@
 #background
   %h2 
     Suas histórias
+  - if notice
+    #createdHistory= notice
   %table.listing
     - History.where("user_id == #{session[:id]}").each do |history| 
       %tr

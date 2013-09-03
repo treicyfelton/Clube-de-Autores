@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_allowed(history)
     if history.user.id != session[:id]
-      redirect_to "/histories"
+      redirect_to "/"
       return false
     end
     true

@@ -1,0 +1,11 @@
+#background
+  %h2 Histórias com moderação pendente
+  - if notice
+    #modered= notice
+  %table.listing
+    - History.where('moderate = 0').each do |ph| 
+      %tr
+        %td
+          = link_to ph.title, ph, class:"colored"
+        %td
+          = button_to "Editar", "/histories/#{ph.id}/edit", method: :get

@@ -13,9 +13,19 @@ class HistoriesController < ApplicationController
 
   def show
     @history = History.find(params[:id]) rescue nil
-    if !@history || !@history.moderate
+    # if !@history || !@history.moderate
+    #   redirect_to "/"
+    #   return
+    # end
+
+    if @history.moderate == 0 && !session[:moderator]
       redirect_to "/"
       return
+    else
+      if @history.moderate == 0 && session[:moderator]
+        @history.moderate = 1
+        @history.save
+      end
     end
 
     if session[:id]
@@ -45,15 +55,17 @@ class HistoriesController < ApplicationController
 
   def create
     @history = currentUser.histories.new(params[:history])
-    @history.moderate = false
+    @history.moderate = 0
     @history.save
-    respond_with @history
+    flash[:notice] = "História criada com sucesso, aguarde aprovação."
+    redirect_to "/all/histories"
   end
 
   def update
     params[:history][:category_ids] ||= []
     @history = History.find(params[:id])
-    flash[:notice] = "História atualizada!" if @history.update_attributes(params[:history])
+    @history.moderate = 0
+    @history.update_attributes(params[:history])
     respond_with @history
   end
 
@@ -81,6 +93,14 @@ class HistoriesController < ApplicationController
     end
     @history.favorite(session[:id])
     render :text => "#{params[:favoriteChecked]}"
+  end
+
+  def moderation
+    @history = History.find(params[:id])
+    @history.moderate = 2
+    @history.save
+    flash[:notice] = "História moderada e publicada com sucesso!"
+    redirect_to "/all/pending"
   end
 
   private

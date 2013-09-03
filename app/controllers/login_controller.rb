@@ -7,6 +7,7 @@ class LoginController < ApplicationController
 		email= params[:email]
 		password = params[:password]
 		admin = params[:admin]
+		moderator = params[:moderator]
 	end
 
 	if email.blank? && password.blank?
@@ -30,12 +31,10 @@ class LoginController < ApplicationController
 		return
 	end
 
-	
-
-	flash[:notice] = "Bem vindo"
 	session[:id] = user.id
 	session[:name] = user.name
 	session[:admin] = user.admin
+	session[:moderator] = user.moderator
 	if session[:admin] == true
 	  redirect_to "/admin/home"
 	else
@@ -48,6 +47,7 @@ class LoginController < ApplicationController
   	session[:id] = nil
 	session[:name] = nil
 	session[:admin] = nil
+	session[:moderator] = nil
 	redirect_to "/"
   end
 end

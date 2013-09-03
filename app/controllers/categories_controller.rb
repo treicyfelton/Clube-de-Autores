@@ -5,8 +5,6 @@ class CategoriesController < ApplicationController
 
   def histories
     @category = Category.find(params[:id])
-    @histories = @category.histories.where("moderate = ?", true).page(params[:page]).per(3)
-    p "@@@@@@@@@@@@@@@@@@@@@@@@@@"
-    p @histories
+    @histories = @category.histories.where("moderate = 2").page(params[:page]).per(3)
   end
 end

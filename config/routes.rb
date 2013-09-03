@@ -1,16 +1,5 @@
 ClubeDeAutores::Application.routes.draw do
 
-  root :to => "index#index"
-  match "index" => "index#index"
-  match "entrar" => "login#login"
-  match "sair" => "login#logout"
-  match "nova_historia" => "histories#new"
-  match "admin_home" => "admin#home"
-  match "home" => "home#home"
-  match "histories/rate" => "histories#rate"
-  match "histories/favoriteChecked" => "histories#favoriteChecked"
-  # match '*a', to: 'errors#routing'
-
   resources :favorites, except:[:index, :edit, :new, :show]
   resources :classifications
   resources :contacts
@@ -21,8 +10,8 @@ ClubeDeAutores::Application.routes.draw do
 
   resources :categories, except:[:index, :edit, :new, :destroy, :show] do
     member do
-      get "histories"
-      get "allcategories"
+      get 'histories'
+      get 'allcategories'
     end
   end  
   
@@ -31,10 +20,23 @@ ClubeDeAutores::Application.routes.draw do
     resources :rules, only:[:update, :edit]
     resources :categories
     resources :users
-    match "admin/users" => "admin#users"
+    match 'admin/users' => 'admin#users'
   end
 
-  get "admin/home"
-  get "all/categories"
-  get "all/histories"
+  get 'admin/home'
+  get 'all/categories'
+  get 'all/histories'
+  get 'all/pending'
+
+  root :to => 'index#index'
+  match 'index' => 'index#index'
+  match 'entrar' => 'login#login'
+  match 'sair' => 'login#logout'
+  match 'nova_historia' => 'histories#new'
+  match 'admin_home' => 'admin#home'
+  match 'home' => 'home#home'
+  match 'histories/rate' => 'histories#rate'
+  match 'histories/favoriteChecked' => 'histories#favoriteChecked'
+  match 'histories/:id/moderation' => 'histories#moderation'
+  match '*a', to: 'errors#routing'
 end

@@ -4,7 +4,8 @@
       Página do administrador:
       = session[:name]
       %br
-      %br
+      - if session[:moderator]
+        = button_to 'Histórias Pendentes', "/all/pending", method: :get, class:'buttonHP'
       %center
         #homeGroup
           #homeButton

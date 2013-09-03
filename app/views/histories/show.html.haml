@@ -1,11 +1,14 @@
 #background
+  - if @history.moderate == 0 || @history.moderate == 1
+    #moderation
+      = link_to 'Essa história ainda não está publicada, clique aqui para permitir publicação.', "/histories/#{@history.id}/moderation"
   #historyPage
     %table 
       %tr
         %td  
           Autor:
           - u = User.find(@history.user_id)
-          = link_to u.name, "/users/#{u.id}", class:"bluelinks"
+          = link_to u.name, "/users/#{u.id}", class:"colored"
           %br
           Categoria(s):
           - Category.find(@history.category_ids).each do |c|

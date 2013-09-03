@@ -3,6 +3,9 @@
     %h2
       Página do usuário:
       = session[:name]
+      %br
+      - if session[:moderator]
+        = button_to 'Histórias Pendentes', "/all/pending", method: :get, class:'buttonHP'
     #homeGroup
       #homeButton
         - u = User.find(session[:id])
