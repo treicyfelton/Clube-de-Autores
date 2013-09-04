@@ -18,6 +18,7 @@
 //= require jqFancyTransitions
 //= require jquery-easing-1.3.pack
 //= require jquery-easing-compatibility.1.2.pack
+//= require fb-root
 
 //= require histories
 //= require index
