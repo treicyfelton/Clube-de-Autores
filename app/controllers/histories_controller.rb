@@ -84,22 +84,28 @@ class HistoriesController < ApplicationController
   end
 
   def rate
+    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     @history = History.find(params[:history]) rescue nil
     if !@history
       redirect_to "/"
       return
     end
+    p "nao passou pelo if, tem que criar novo voto"
     @history.rate(session[:id],params[:rate].to_i)
+    p "finalizou o modelo"
     render :text => "#{params[:rate]}"
   end
 
   def favoriteChecked
+    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     @history = History.find(params[:h]) rescue nil
     if !@history
       redirect_to "/"
       return
     end
+    p "nao passou pelo if, tem que criar novo fav"
     @history.favorite(session[:id])
+    p "finalizou o modelo"
     render :text => "#{params[:favoriteChecked]}"
   end
 

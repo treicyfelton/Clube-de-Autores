@@ -5,8 +5,8 @@
       = session[:name]
       %br
       - if session[:moderator]
-        = button_to 'Histórias Pendentes', "/all/pending", method: :get, class:'buttonHP'
-    #homeGroup
+        = button_to 'Histórias Pendentes', "/all/pending", method: :get
+    #homeGroupUser
       #homeButton
         - u = User.find(session[:id])
         = link_to image_tag("perfil.png"), url_for("/users/#{u.id}")
