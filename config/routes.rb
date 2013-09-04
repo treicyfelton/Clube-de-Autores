@@ -26,6 +26,7 @@ ClubeDeAutores::Application.routes.draw do
   get 'admin/home'
   get 'all/categories'
   get 'all/histories'
+  get 'all/unpublished'
   get 'all/pending'
 
   root :to => 'index#index'
@@ -38,5 +39,6 @@ ClubeDeAutores::Application.routes.draw do
   match 'histories/rate' => 'histories#rate'
   match 'histories/favoriteChecked' => 'histories#favoriteChecked'
   match 'histories/:id/moderation' => 'histories#moderation'
+  match '/histories/:id/notallow' => 'histories#notallow'
   match '*a', to: 'errors#routing'
 end

@@ -1,6 +1,7 @@
 #background
   %h2 
     Suas histórias
+  #unpublished= link_to 'Histórias recusadas', "/all/unpublished"
   - if notice
     #createdHistory= notice
   %table.listing

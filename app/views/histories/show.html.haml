@@ -1,7 +1,11 @@
 #background
   - if @history.moderate == 0 || @history.moderate == 1
     #moderation
-      = link_to 'Essa história ainda não está publicada, clique aqui para permitir publicação.', "/histories/#{@history.id}/moderation"
+      Essa história ainda não está publicada.    
+      %table
+        %tr  
+          %td= button_to 'Permitir publicação', "/histories/#{@history.id}/moderation"
+          %td= button_to 'NÃO permitir publicação', "/histories/#{@history.id}/notallow"
   #historyPage
     %table 
       %tr

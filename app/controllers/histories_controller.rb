@@ -13,10 +13,15 @@ class HistoriesController < ApplicationController
 
   def show
     @history = History.find(params[:id]) rescue nil
-    # if !@history || !@history.moderate
-    #   redirect_to "/"
-    #   return
-    # end
+    if !@history 
+      redirect_to "/"
+      return
+    end
+
+    if @history .moderate == 3
+      redirect_to "/"
+      return
+    end
 
     if @history.moderate == 0 && !session[:moderator]
       redirect_to "/"
@@ -24,6 +29,9 @@ class HistoriesController < ApplicationController
     else
       if @history.moderate == 0 && session[:moderator]
         @history.moderate = 1
+        @history.save
+        @history.moderateTime = @history.updated_at
+        @history.updated_at = @history.created_at
         @history.save
       end
     end
@@ -100,6 +108,14 @@ class HistoriesController < ApplicationController
     @history.moderate = 2
     @history.save
     flash[:notice] = "História moderada e publicada com sucesso!"
+    redirect_to "/all/pending"
+  end
+
+  def notallow
+    @history = History.find(params[:id])
+    @history.moderate = 3
+    @history.save
+    flash[:notice] = "História moderada. História não publicada."
     redirect_to "/all/pending"
   end
 
