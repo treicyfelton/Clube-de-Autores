@@ -26,7 +26,7 @@ class AdminController < ApplicationController
     @favHistories ||= []
     @favId ||= []
     @hId ||= []
-    Favorite.where("user_id == #{session[:id]}").each do |f|
+    Favorite.where("user_id = #{session[:id]}").each do |f|
       @b = History.find(f.history_id)
       @favHistories << @b.title
       @hId << @b.id
