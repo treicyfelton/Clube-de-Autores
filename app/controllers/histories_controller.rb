@@ -74,7 +74,8 @@ class HistoriesController < ApplicationController
     @history = History.find(params[:id])
     @history.moderate = 0
     @history.update_attributes(params[:history])
-    respond_with @history
+    flash[:notice] = "História atualizada com sucesso, aguarde aprovação."
+    redirect_to "/all/histories"
   end
 
   def destroy
