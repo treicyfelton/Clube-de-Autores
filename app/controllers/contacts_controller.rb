@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])   
     if @contact.valid? 
       ContactMailer.contact_message(params[:contact]).deliver
-      redirect_to '/' 
+      redirect_to '/contacts/new' 
       return 
     end   
     render :action => 'new' 

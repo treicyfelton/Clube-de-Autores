@@ -27,7 +27,7 @@ describe UsersController do
     end
 
     it 'should create user' do
-      @new_user = User.new(@user.attributes.except("id", "admin", "password", "created_at","updated_at"))
+      @new_user = User.new(@user.attributes.except("id", "admin", "moderator", "password", "created_at","updated_at"))
       @new_user.email = "functional@test.com"
       @new_user.nick = "novonick"
       should_not eq('User.count') do

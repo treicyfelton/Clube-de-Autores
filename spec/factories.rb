@@ -10,6 +10,7 @@ FactoryGirl.define do
     situation 'on'
     hobby 'sei la'
     admin false
+    moderator false
    end
 
    factory :admin, class: User do
@@ -21,6 +22,7 @@ FactoryGirl.define do
     situation 'on'
     hobby 'sei la'
     admin true
+    moderator true
    end
    
    factory :history do
@@ -28,8 +30,9 @@ FactoryGirl.define do
      description 'Uma garota, bla bla bla'
      note 'bla bla bla'
      ahistory 'era uma vez...'
-     classification_id '1'
+     classification_id 1
      user_id '11'
+     moderate '0'
    end
    
    factory :moderated_history, class: History do
@@ -37,9 +40,19 @@ FactoryGirl.define do
      description 'Uma garota, bla bla bla, o lobo bla bla bla a véia bla bla bla'
      note 'bla bla bla'
      ahistory 'era uma vez...'
-     classification_id '1'
+     classification_id 1
      user_id '11'
-     moderate true
+     moderate '2'
+   end
+
+   factory :refused_history, class: History do
+     title 'Chapeuzinho Vermelho'
+     description 'Uma garota, bla bla bla, o lobo bla bla bla a véia bla bla bla'
+     note 'bla bla bla'
+     ahistory 'era uma vez...'
+     classification_id 1
+     user_id '11'
+     moderate '3'
    end
 
    factory :category do
@@ -59,7 +72,8 @@ FactoryGirl.define do
    end
 
    factory :classification do
-     min_age '10'
+     id 1
+     min_age 10
      name '10 anos'
    end
 

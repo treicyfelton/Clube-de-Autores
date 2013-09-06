@@ -18,7 +18,7 @@ class HistoriesController < ApplicationController
       return
     end
 
-    if @history .moderate == 3
+    if @history.moderate == 3
       redirect_to "/"
       return
     end
@@ -26,17 +26,17 @@ class HistoriesController < ApplicationController
     if @history.moderate == 0 && !session[:moderator]
       redirect_to "/"
       return
-    else
-      if @history.moderate == 0 && session[:moderator]
-        @history.moderate = 1
-        @history.save
-        @history.moderateTime = @history.updated_at
-        @history.updated_at = @history.created_at
-        @history.save
-      end
     end
 
-    if session[:id]
+    if @history.moderate == 0 && session[:moderator]
+      @history.moderate = 1
+      @history.save
+      @history.moderateTime = @history.updated_at
+      @history.updated_at = @history.created_at
+      @history.save
+    end
+
+    if session[:id] && !session[:moderator]
       @user = User.find(session[:id])
       if !@user || !@user.allowed_history(@history)
         redirect_to "/"
@@ -85,28 +85,22 @@ class HistoriesController < ApplicationController
   end
 
   def rate
-    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     @history = History.find(params[:history]) rescue nil
     if !@history
       redirect_to "/"
       return
     end
-    p "nao passou pelo if, tem que criar novo voto"
     @history.rate(session[:id],params[:rate].to_i)
-    p "finalizou o modelo"
     render :text => "#{params[:rate]}"
   end
 
   def favoriteChecked
-    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     @history = History.find(params[:h]) rescue nil
     if !@history
       redirect_to "/"
       return
     end
-    p "nao passou pelo if, tem que criar novo fav"
     @history.favorite(session[:id])
-    p "finalizou o modelo"
     render :text => "#{params[:favoriteChecked]}"
   end
 

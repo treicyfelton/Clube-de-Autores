@@ -34,7 +34,13 @@ class User < ActiveRecord::Base
   end
 
   def allowed_history(history)
-    self.born_at < history.classification.min_age.years.ago.to_date    
+    p "chegou no allowed"
+    p history
+    p history.classification
+    p history.classification_id
+    p history.classification.min_age
+    self.born_at < history.classification.min_age.years.ago.to_date 
+    p "passou pelo allowed"   
   end
 
 end

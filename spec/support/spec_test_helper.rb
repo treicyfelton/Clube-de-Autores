@@ -2,8 +2,9 @@ module SpecTestHelper
 
   def login(user)
     user = User.find(user.id)
-    request.session[:id] = user.id
-    request.session[:admin] = user.admin
+    session[:id] = user.id
+    session[:admin] = user.admin
+    session[:moderator] = user.moderator
   end
 
   def current_user
