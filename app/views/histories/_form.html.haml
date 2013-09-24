@@ -6,6 +6,9 @@
           %li= msg
   %table.form
     %tr
+      %td.label Tipo de Publicação* :
+      %td= select(:history, :historytype, options_for_select([['História', 1], ['História em quadrinhos', 2]]), prompt: 'Selecione o tipo de história')
+    %tr
       %td.label Título* :
       %td= f.text_field :title
     %tr
@@ -13,18 +16,22 @@
       %td= f.text_field :description
     %tr
       %td.label Classificação* :  
-      %td= f.select :classification_id, @classifications.map {|c| [c.name,c.id]}
+      %td= f.select :classification_id, @classifications.map {|c| [c.name,c.id]}, prompt: 'Selecione classificação'
     %tr
       %td.label Categorias* :
-      %td
-        - Category.find(:all).each do |c|
-          = check_box_tag 'history[category_ids][]', c.id, @history.categories.include?(c)
-          = c.addcategory
+      %td.category1
+        = collection_select(:history, :category_ids, Category.all, :id, :addcategory, prompt: 'Selecione categoria')
+        .combo1 +
+      %td.category2
+        = collection_select(:history, :category_ids, Category.all, :id, :addcategory, prompt: 'Selecione categoria')  
     %tr
       %td.label Comentário do Autor:      
       %td= f.text_field :note
-    %tr
+    %tr.history
       %td.label História* :  
-      %td= f.text_area :ahistory, cols:"50"
+      %td= f.text_area :ahistory, cols:"50", id: '1'
+    %tr.comic
+      %td.label História em quadrinhos* :  
+      %td= file_field_tag :data_stream, id: '2'
   .actions
     = f.submit

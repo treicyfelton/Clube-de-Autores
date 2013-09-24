@@ -6,6 +6,10 @@
         %tr  
           %td= button_to 'Permitir publicação', "/histories/#{@history.id}/moderation"
           %td= button_to 'NÃO permitir publicação', "/histories/#{@history.id}/notallow"
+  
+  #advertising_horizontal
+    Anúncio Aqui
+
   #historyPage
     %table 
       %tr
@@ -39,6 +43,9 @@
               %input.rating{:name => "Vote", :type => "radio", :value => "4"}
               %input.rating{:name => "Vote", :type => "radio", :value => "5"} 
         %td
+          .g-plus{"data-action" => "share", "data-annotation" => "vertical-bubble", "data-height" => "60"}
+
+        %td
           = button_to 'Reportar história', new_contact_path, method: :get, class: "button"
 
     %h2.title
@@ -49,8 +56,12 @@
       - u = User.find(@history.user_id)
       = u.name
 
-    #textBox
-      = @history.ahistory
+    -if @history.historytype == 1
+      #textBox
+        = simple_format @history.ahistory
+    -if @history.historytype == 2
+      %img{:src => @history.comic}
+          
 
     - if @history.moderate == 2
       .fb-comments{"data-href" => "http://clubedeautores.herokuapp.com/histories/#{@history.id}", "data-width" => "900", "num_posts" => "5"}  

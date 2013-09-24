@@ -1,0 +1,3 @@
+%ul
+  - @histories.each do |h|
+    %li= link_to h.title, :action => 'show', :id => h.id

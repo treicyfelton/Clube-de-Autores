@@ -103,13 +103,6 @@ describe HistoriesController do
       put :update, id: @history, history: { title: @history.title, ahistory: @history.ahistory }
       response.should redirect_to "/all/histories"
     end
-
-    # it 'should update moderate' do
-    #   login(@user)
-    #   put :update, id: @mh, history: { title: @mh.title, moderate: @mh.moderate }
-    #   p @mh.moderate
-    #   (@mh.moderate).should eql 0
-    # end
   end 
 
   describe 'delete' do
@@ -138,6 +131,34 @@ describe HistoriesController do
   it 'notallow' do
     login(@admin)
     get :notallow, id: @mh
+    response.should redirect_to "/all/pending"
+  end
+
+  it 'should not vote if there is no history' do
+    login(@user)
+    get :rate
+    response.should redirect_to "/"
+  end
+
+  it 'should not vote if user not logged' do
+    get :rate
+    response.should redirect_to "/entrar"
+  end
+  
+  it 'should not bookmark if there is no history' do
+    login(@user)
+    get :favoriteChecked
+    response.should redirect_to "/"
+  end
+
+  it 'should not bookmark if user not logged' do
+    get :favoriteChecked
+    response.should redirect_to "/entrar"
+  end
+
+  it 'should redirect after moderate' do
+    login(@admin)
+    get :moderation, id: @history
     response.should redirect_to "/all/pending"
   end
 end

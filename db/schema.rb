@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904133713) do
+ActiveRecord::Schema.define(:version => 20130916201947) do
 
   create_table "categories", :force => true do |t|
     t.string   "addcategory", :limit => 30, :null => false
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(:version => 20130904133713) do
   create_table "classifications", :force => true do |t|
     t.string   "name"
     t.integer  "min_age"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comics", :force => true do |t|
+    t.string   "title"
+    t.integer  "history_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -59,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20130904133713) do
     t.integer  "classification_id"
     t.integer  "moderate"
     t.datetime "moderateTime"
+    t.integer  "historytype"
   end
 
   create_table "rates", :force => true do |t|

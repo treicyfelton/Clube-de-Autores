@@ -1,296 +1,136 @@
 body
-  background-color: #9AC0CD
+  background: #F3EAD7
+  font: 12px 'DroidSansBold', Tahoma, sans-serif 
+  margin: 0
+
+#yield
+  margin: 0 auto
+  text-align: center  
+  width: 1200px
+
+nav ul
+  background-color: #91A224
+  border: 1px solid #736256
+  font-weight: bold
+  height: 33px
+  letter-spacing: 2px
+  list-style:none
+  margin: 0 auto
+  padding: 0 auto
   text-align: center
+  text-transform: uppercase 
 
-  #background
-    background: #FFFFFF
-    border: 1px solid
-    font-family: sans-serif  
-    font-size: 16px
-    padding-bottom: 30px
-    width: 1150px
+nav ul li 
+  display: inline-block
+  position: relative
 
-  #top
-    background: #000000
-    border: 1px solid black
-    color: #FFFFFF
-    font-family: sans-serif
-    font-size: 14px
-    height: 130px
-    line-height: 30px
-    text-indent: 920px
-    width: 1150px    
-    a
-      color: #FFFFFF
-      text-decoration: none 
-    a:hover
-      color: #436EEE
-      text-decoration: none
+li ul
+  position: absolute
+  left: 0
+  display: none
 
-  #footer
-    background: #000000
-    border: 1px solid
-    border-color: #000000
-    color: #000000
-    font-family: sans-serif
-    font-size: 13px
-    height: 20px
-    line-height: 20px
-    width: 1150px 
-    a
-      color: #FFFFFF
-      text-decoration: none 
-    a:hover
-      color: #436EEE
-      text-decoration: none
+nav ul li a
+  display: inline-block
+  color: #1F130D
+  line-height: 30px
+  padding: 2px 60px
+  text-decoration: none    
 
-  #highlights
-    float: left
-    margin-bottom: 30px
-    margin-left: 60px
-    margin-top: 30px
-    width: 200px  
-    table
-      background: #CFCFCF
-      border: 1px solid black
-      width: 350px
-    th
-      background: #000000
-      color: #FFFFFF
-    a
-      color: #8B0000
-      font-family: sans-serif
-      margin-left: 30px
-      text-decoration: none
+nav ul li a:hover
+  background-color: #B5B969
+  border-bottom: 3px solid #CCB993
+  color: #1F130D
+  height: 27px
+  text-decoration: none
 
-  h2
-    color: #8B0000 
-    font-size: 20px
-    margin-left: 30px
-    text-align: left 
-
-  a.black
-    color: #000000
-    font-family: sans-serif
-    font-size: 18px
-    text-decoration: none
-
-  a.colored
-    color: #8B0000
-    font-family: sans-serif
-    text-decoration: none  
-
-  #slide 
-    margin-bottom: 30px
-    margin-left: 400px 
-    margin-top: 30px  
-
-  #lasts
-    table
-      background: #CFCFCF
-      border: 1px solid black
-      border-collapse: collapse
-      width: 1150px
-    td 
-      height: 50px  
-    td.title
-      background: #000000
-      color: #FFFFFF
-      font-size: 25px
-      height: 50px
-      padding-left: 60px
-      padding-top: 20px
-      width: 575px 
-    td.lastUserTitle
-      font-size: 20px
-      height: 50px
-      text-indent: 200px
-    td.lastHistoryTitle
-      font-size: 20px
-      height: 50px
-      text-indent: 40px 
-    td.lastUser
-      font-size: 18px
-      padding-right: 140px
-      text-align: right  
-    td.lastHistory
-      font-size: 18px
-      text-indent: 13px
-    a
-      color: #8B0000
-      font-family: sans-serif
-      margin-left: 30px
-      text-decoration: none
-
-  #categoryList
-    margin-left: 30px
-    margin-bottom: 15px
-    text-align: left
-    a
-      color: #000000
-      font-family: sans-serif
-      font-size: 18px
-      text-decoration: none
-
-  #historyList
-    border: 1px solid black
-    margin-bottom: 20px
-    width: 700px
-    a
-      color: #8B0000
-      font-family: sans-serif
-      text-decoration: none 
-
-  #textBox
-    margin-bottom: 20px
-    text-align: justify
-    width: 900px
-    word-wrap: break-word
-
-  #msgSpace
-    margin-bottom: 30px
-    margin-left: -650px
-    a
-      color: #8B0000
-      font-family: sans-serif
-      text-decoration: none 
-
-  #historyPage
-    table
-      margin-left: 30px
-      width: 1150px 
-    h2.title
-      color: #1874CD
-      font-size: 20px
-      margin-top: 30px
-      text-align: center
-    h2.author
-      color: #000000
-      font-size: 14px
-      margin-bottom: 30px
-      text-align: center
-
-  #heart-fav
-    padding-left: 70px 
-
-  #star-rating
-    padding-left: 20px     
-
-  .button
-    background: #FF4040
-    border: 1px solid
-    border-radius: 3px
-    cursor: pointer
-    height: 25px
-    text-shadow: 0.1em 0.1em 0.2em white
-    width: 150px 
-
-  #moderation
-    background: #CD5C5C
-    color: #8B1A1A
-    height: 60px
-    margin-top: 10px
-    padding-top: 13px
-    width: 1150px   
-
-  #createdHistory
-    background: #A2CD5A
-    height: 30px
-    margin-bottom: 20px
-    margin-top: 5px
-    padding-top: 7px
-    width: 1150px
-
-  #refusedHistory
-    background: #FF4040
-    height: 25px
-    margin-bottom: 20px
-    margin-top: 5px
-    padding-top: 7px
-    width: 1150px   
-
-  #modered 
-    background: #A2CD5A
-    height: 30px
-    margin-bottom: 20px
-    margin-top: 5px
-    padding-top: 7px
-    width: 1150px          
-
-  #home
-    h2
-      color: #000000 
-      font-family: sans-serif
-      font-size: 20px 
-      text-align: center
-
-  #homeGroup
-    margin-left: 260px
-    width: 900px
-
-  #homeGroupUser
-    margin-left: 290px
-    width: 900px  
-
-  #homeButton 
-    color: #000000
-    float: left
-    height: 115px
-    margin-left: 20px 
-    width: 122px
-
-  #stop
-    clear: both
-    margin-bottom: 30px
-
-  #homesTables
-    border: 1px solid black
-    position: relative
-
-  #homeLists
-    table.home
-      width: 450px 
-    td.home
+#top
+  background: #F4EAD9
+  height: 100px
+  width: 100%
+  #center
+    width: 1200px
+    margin: 0 auto
+    #logo
+      background: #fff
       float: left
-      margin-left: 100px
-    td.groupHome
-      vertical-align: top
-      text-align: center
+      height: 100px
+      width: 350px
+    #search
+      float: left
+      height: 100px
+      width: 450px
+      .searchbox
+        border: 3px solid #C7D530
+        -webkit-border-top-left-radius: 15px
+        -moz-border-top-left-radius: 15px
+        border-top-left-radius: 15px
+        -webkit-border-bottom-right-radius: 15px
+        -moz-border-bottom-right-radius: 15px
+        border-bottom-right-radius: 15px
+        height: 30px
+        margin-left: 40px
+        width: 280px 
+        &:focus
+          border: 3px solid #91A224
+    #links
+      color: #1F130D
+      float: left
+      height: 100px
+      line-height: 175px
+      text-align: right
+      width: 400px
+      a
+        color: #1F130D
+        text-indent: 30px
+        text-decoration: none       
 
-  h2.tabletitle
-    float: left
-    font-size: 18px
-    margin-bottom: 2px
-    margin-left: 70px
-    text-align: left
-    width: 500px 
+footer
+  background: #91A224
+  border: 1px solid #736256
+  height: 33px
+  #center
+    width: 800px
+    margin: 0 auto
+    text-align: center
+    ul li
+      display: inline
+      list-style: none
+  a
+    border-bottom: 3px solid #CCB993
+    color: #1F130D
+    display: inline-block
+    text-decoration: none    
+  a:hover
+    color: #1F130D
+    text-decoration: none    
 
-  table.listing
-    margin-bottom: 30px
-    width: 990px
+li:hover ul 
+  display: block 
 
-  #profile
-    table
-      margin-bottom: 30px
-      width: 800px
-    th
-      color: #000000
-      font-size: 19px
-    td
-      color: #8B0000
-      font-weight: bold
+.history
+  display: none
 
-  #unpublished
-    margin-bottom: 30px
-    margin-left: -945px
-    a
-      color: #000000
+.comic
+  display: none
 
+.category2
+  display: none  
 
+#advertising_horizontal
+  background: #fff
+  border: 1px solid black
+  height: 70px
+  margin: 0 auto
+  margin-bottom: 20px
+  margin-top: 20px
+  width: 800px
 
+#advertising_square
+  background: #fff
+  border: 1px solid black
+  height: 200px
+  margin: 0 auto
+  margin-bottom: 20px
+  margin-top: 20px
+  width: 250px
 
- 
-
-       
-
-    

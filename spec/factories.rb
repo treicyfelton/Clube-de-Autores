@@ -1,11 +1,11 @@
-# encoding: utf-8
+#encoding: utf-8
 
 FactoryGirl.define do 
   factory :user do
     name 'Diego Oliveira'
     email 'diego@email.com'
     nick 'diego1'
-    password '123456' 
+    plain_password '123456' 
     born_at '2013-05-04'
     situation 'on'
     hobby 'sei la'
@@ -26,6 +26,7 @@ FactoryGirl.define do
    end
    
    factory :history do
+     historytype '1'
      title 'Branca de Neve'
      description 'Uma garota, bla bla bla'
      note 'bla bla bla'
@@ -41,6 +42,7 @@ FactoryGirl.define do
      note 'bla bla bla'
      ahistory 'era uma vez...'
      classification_id 1
+     historytype '1'
      user_id '11'
      moderate '2'
    end
@@ -51,6 +53,7 @@ FactoryGirl.define do
      note 'bla bla bla'
      ahistory 'era uma vez...'
      classification_id 1
+     historytype '1'
      user_id '11'
      moderate '3'
    end

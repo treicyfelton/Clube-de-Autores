@@ -4,9 +4,9 @@ ClubeDeAutores::Application.routes.draw do
   resources :classifications
   resources :contacts
   resources :rules, except:[:edit, :new, :index]
-  resources :histories, except:[:index]
   resources :admin_home
   resources :users, except:[:index]
+  resources :histories, except:[:index]
 
   resources :categories, except:[:index, :edit, :new, :destroy, :show] do
     member do
@@ -14,7 +14,7 @@ ClubeDeAutores::Application.routes.draw do
       get 'allcategories'
     end
   end  
-  
+    
   namespace :admin do
     resources :histories, only:[:index, :destroy]
     resources :rules, only:[:update, :edit]
@@ -33,12 +33,13 @@ ClubeDeAutores::Application.routes.draw do
   match 'index' => 'index#index'
   match 'entrar' => 'login#login'
   match 'sair' => 'login#logout'
-  match 'nova_historia' => 'histories#new'
+  match 'publicar' => 'histories#new'
   match 'admin_home' => 'admin#home'
   match 'home' => 'home#home'
   match 'histories/rate' => 'histories#rate'
   match 'histories/favoriteChecked' => 'histories#favoriteChecked'
   match 'histories/:id/moderation' => 'histories#moderation'
-  match '/histories/:id/notallow' => 'histories#notallow'
+  match 'histories/:id/notallow' => 'histories#notallow'
+  match 'histories/search' => 'histories#search'
   match '*a', to: 'errors#routing'
 end

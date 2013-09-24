@@ -5,7 +5,10 @@
     %br
     = paginate @histories
 
-   
+  - if @category.addcategory == "Amor"
+    #advertising_horizontal
+      Anúncio aqui
+  
   -@histories.each do |history|
     #historyList
       = link_to history.title, history

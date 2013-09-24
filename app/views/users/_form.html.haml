@@ -19,10 +19,10 @@
       %td= f.password_field :plain_password
     %tr
       %td.label Data de nascimento* :  
-      %td= f.date_select :born_at, start_year: 100.years.ago.year, end_year: 1.years.ago.year
+      %td= f.date_select :born_at, start_year: 100.years.ago.year, end_year: 1.years.ago.year, prompt: {day: '--Dia--', month: '--Mês--', year: '--Ano--'}
     %tr
       %td.label Situação:  
-      %td= select(:user, :situation, options_for_select([['Criando o tempo todo.'], ['Aguarde... escrevendo...'], ['Sempre online e ignorando você!'],['Caçando dragões!']]))
+      %td= select(:user, :situation, options_for_select([['Criando o tempo todo.'], ['Aguarde... escrevendo...'], ['Sempre online e ignorando você!'], ['Caçando dragões!'], ['Comendo cereal.'], ['Lendo revistinhas.'], ['Curtindo um som maneiro!'], ['Joando videogame.'], ['Cuidando da minha vida...'], ['Dormindo.'], ['Lendo histórias!'], ['Voando.'], ['Esperando o horário de almoço!'], ['Papeando...']]), prompt: '--Selecionar situação--')
     %tr
       %td.label Passatempo:  
       %td= f.text_field :hobby 

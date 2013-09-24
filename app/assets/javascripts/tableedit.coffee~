@@ -1,0 +1,18 @@
+$(document).ready ->
+  $("#listing").dataTable
+    bPaginate: true
+    bLengthChange: true
+    bFilter: true
+    bSort: true
+    bInfo: true
+    bAutoWidth: true
+
+
+  $("#listing2").dataTable
+    bPaginate: true
+    bLengthChange: true
+    bFilter: true
+    bSort: true
+    bInfo: true
+    bAutoWidth: true
+

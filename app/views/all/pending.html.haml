@@ -2,10 +2,17 @@
   %h2 Histórias com moderação pendente
   - if notice
     #modered= notice
-  %table.listing
-    - History.where('moderate = 0').each do |ph| 
+  %table#listing
+    %thead
       %tr
         %td
-          = link_to ph.title, ph, class:"colored"
+          História
         %td
-          = button_to "Moderar", "/histories/#{ph.id}", method: :get
+          Opções  
+    %tbody      
+      - History.where('moderate = 0').each do |ph|
+        %tr
+          %td
+            = link_to ph.title, ph, class:"colored"
+          %td.t
+            = button_to "Moderar", "/histories/#{ph.id}", method: :get

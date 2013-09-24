@@ -10,8 +10,6 @@ class RulesController < ApplicationController
     end
   end
 
-  # GET /rules/1
-  # GET /rules/1.json
   def show
     @rule = Rule.find(params[:id])
 
@@ -21,8 +19,6 @@ class RulesController < ApplicationController
     end
   end
 
-  # PUT /rules/1
-  # PUT /rules/1.json
   def update
     @rule = Rule.find(params[:id])
 

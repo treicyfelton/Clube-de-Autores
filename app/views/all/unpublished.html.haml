@@ -3,11 +3,14 @@
     Suas histórias não publicadas
   #refusedHistory As histórias abaixo foram recusadas pela moderação.
   %table.listing
-    - History.where("user_id = #{session[:id]}").where("moderate == 3").each do |history| 
+    %thead
       %tr
-        %td
-          = link_to history.title, history, class:"colored"
-        %td
-          = button_to "Editar", "/histories/#{history.id}/edit", method: :get  
-        %td
-          = button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete
+        %td Título
+        %td Editar?
+        %td Deletar?
+    %tbody    
+      - History.where("user_id = #{session[:id]}").where("moderate == 3").each do |history| 
+        %tr
+          %td.t= link_to history.title, history, class:"colored"
+          %td.t= button_to "Editar", "/histories/#{history.id}/edit", method: :get  
+          %td.t= button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete

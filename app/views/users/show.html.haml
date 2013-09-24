@@ -3,21 +3,25 @@
     Perfil do usuário: #{@user.name}
   #profile
     %table
-      %tr
-        %td Nome
-        %td Data de nascimento
-        %td Situação
-        %td Passatempo
-      %tr  
-        %td= @user.name
-        %td= @user.born_at
-        %td= @user.situation
-        %td= @user.hobby
+      %thead
+        %tr
+          %td Nome
+          %td Data de nascimento
+          %td Situação
+          %td Passatempo
+      %tbody
+        %tr  
+          %td.t= @user.name
+          %td.t= @user.born_at
+          %td.t= @user.situation
+          %td.t= @user.hobby
     
-    %table
-      %th
-        Todas Histórias de #{@user.nick}
+    %table.show
+      %thead
+        %tr
+          %td Todas Histórias de #{@user.nick}
+      %tbody    
         - @histories.each do |h|
           %tr
-            %td
+            %td.t
               = link_to h.title, h, class:"colored"

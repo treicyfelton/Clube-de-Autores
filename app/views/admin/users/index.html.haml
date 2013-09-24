@@ -1,24 +1,25 @@
 #background
   %h2 Todos os usuários
   %table.listing
-    %tr
-      %th Nome
-      %th Email
-      %th Nick
-      %th Data de nascimento
-      %th Moderador
-      %th Administrador
-      %th
-      %th
-      %th
-    - @users.each do |user|
-    - presenter = UserPresenter.new(user)
+    %thead
       %tr
-        %td= link_to user.name, user, class:"colored"
-        %td= user.email
-        %td= user.nick
-        %td= user.born_at
-        %td= presenter.moderator
-        %td= presenter.admin
-        %td= button_to 'Editar', edit_admin_user_path(user), method: :get
-        %td= button_to 'Excluir', "/admin/users/#{user.id}", method: :delete
+        %td Nome
+        %td Email
+        %td Nick
+        %td Data de nascimento
+        %td Moderador
+        %td Administrador
+        %td Editar?
+        %td Excluir?
+    %tbody    
+      - @users.each do |user|
+      - presenter = UserPresenter.new(user)
+        %tr
+          %td.t= link_to user.name, user, class:"colored"
+          %td.t= user.email
+          %td.t= user.nick
+          %td.t= user.born_at
+          %td.t= presenter.moderator
+          %td.t= presenter.admin
+          %td.t= button_to 'Editar', edit_admin_user_path(user), method: :get
+          %td.t= button_to 'Excluir', "/admin/users/#{user.id}", method: :delete

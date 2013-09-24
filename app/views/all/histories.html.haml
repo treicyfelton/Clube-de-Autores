@@ -5,11 +5,20 @@
   - if notice
     #createdHistory= notice
   %table.listing
-    - History.where("user_id = #{session[:id]}").each do |history| 
+    %thead
       %tr
         %td
-          = link_to history.title, history, class:"colored"
+          Título
         %td
-          = button_to "Editar", "/histories/#{history.id}/edit", method: :get  
+          Editar?
         %td
-          = button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete
+          Deletar? 
+    %tbody        
+      - History.where("user_id = #{session[:id]}").each do |history| 
+        %tr
+          %td
+            = link_to history.title, history, class:"colored"
+          %td.t
+            = button_to "Editar", "/histories/#{history.id}/edit", method: :get  
+          %td.t
+            = button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete

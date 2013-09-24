@@ -1,6 +1,8 @@
 /*
 = require ClubeDeAutores
+= require Design
 = require fav
 = require rating
 = require jimgMenu
+= require jquery.dataTables
 */

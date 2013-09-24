@@ -4,6 +4,7 @@ class HistoriesController < ApplicationController
   before_filter :toIndex, only: [:index]
   before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy, :rate, :favoriteChecked]
   before_filter :load_classifications, only: [:new, :edit, :update, :create]
+  after_filter :save_image, :only=>[:create,:update]
   layout :selectlayout  
   
   def index
@@ -64,9 +65,14 @@ class HistoriesController < ApplicationController
   def create
     @history = currentUser.histories.new(params[:history])
     @history.moderate = 0
-    @history.save
-    flash[:notice] = "História criada com sucesso, aguarde aprovação."
-    redirect_to "/all/histories"
+    
+    if @history.save
+      flash[:notice] = "História criada com sucesso, aguarde aprovação."
+      redirect_to "/all/histories"
+    else
+      respond_with @history
+      flash[:notice] = 'Foo'
+    end
   end
 
   def update
@@ -120,8 +126,20 @@ class HistoriesController < ApplicationController
     redirect_to "/all/pending"
   end
 
+  def search
+    @histories = History.search params[:search]
+  end
+
   private
   def load_classifications
     @classifications = Classification.all
+  end
+
+  def save_image
+    if params[:data_stream]
+      @comic = @history.comic ? @history.comic : Comic.new(:title=>@history.title)
+      @comic.data_stream = params[:data_stream]
+      @history.comic = @comic if @comic.save
+    end
   end
 end
