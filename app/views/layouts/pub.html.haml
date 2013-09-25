@@ -5,15 +5,14 @@
     = csrf_meta_tags
   %body
     %header
-      #top
-        #center
-          #logo
-            LOGO AQUI
-          #search
-            Pesquise aqui: 
-            = form_tag :controller => 'histories', :action => 'search', :method => 'get' do
-              = text_field_tag :search, params[:search], :id => 'search_field', class:"searchbox"
-              = submit_tag "Buscar", :name => nil
+      .top
+        .main
+          %h1
+            %a{:href => "/"}
+              Clube de Autores
+          = form_tag :controller => 'histories', :action => 'search', :method => 'get', :id => 'search' do
+            = text_field_tag :search, params[:search], :id => 'search_field', class:"searchbox"
+            = submit_tag "Buscar", :name => nil
           #links 
             = link_to "Acessar conta", "/entrar"
             |

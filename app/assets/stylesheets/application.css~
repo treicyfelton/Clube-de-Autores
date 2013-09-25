@@ -1,6 +1,5 @@
 /*
-= require ClubeDeAutores
-= require Design
+= require Layout
 = require fav
 = require rating
 = require jimgMenu

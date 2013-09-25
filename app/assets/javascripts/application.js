@@ -12,6 +12,7 @@
 //= require tables
 //= require jquery.dataTables
 //= require admin_menu
+//= require background
 
 //= require histories
 //= require index
