@@ -1,16 +1,15 @@
-#background
-  %h2 
-    Suas histórias não publicadas
-  #refusedHistory As histórias abaixo foram recusadas pela moderação.
-  %table.listing
-    %thead
+%h2 
+  Suas histórias não publicadas
+.refusedHistory As histórias abaixo foram recusadas pela moderação.
+%table.listing
+  %thead
+    %tr
+      %td Título
+      %td 
+      %td 
+  %tbody    
+    - History.where("user_id = #{session[:id]}").where("moderate == 3").each do |history| 
       %tr
-        %td Título
-        %td Editar?
-        %td Deletar?
-    %tbody    
-      - History.where("user_id = #{session[:id]}").where("moderate == 3").each do |history| 
-        %tr
-          %td.t= link_to history.title, history, class:"colored"
-          %td.t= button_to "Editar", "/histories/#{history.id}/edit", method: :get  
-          %td.t= button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete
+        %td.t= link_to history.title, history
+        %td.t= button_to "Editar", "/histories/#{history.id}/edit", method: :get, class:'blueButton'
+        %td.t= button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete, class:'redButton'

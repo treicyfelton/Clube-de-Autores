@@ -1,37 +1,38 @@
-= form_for(@history) do |f|
+= form_for(@history, :html=>{:multipart=>true}) do |f|
   - if @history.errors.any?
     #error_explanation
       %ul
         - @history.errors.full_messages.each do |msg|
           %li= msg
-  %table.form
+  
+  .description Informações iniciais
+
+  .label Tipo de publicação*
+  = select(:history, :historytype, options_for_select([['História', 1], ['História em quadrinhos', 2]]), prompt: 'Selecione o tipo de história')
+  .label Título*
+  = f.text_field :title, :placeholder => 'Minha nova história'
+  .label Descrição
+  = f.text_field :description, :placeholder => 'Uma breve descrição da história'
+  .label Comentário do Autor
+  = f.text_field :note, :placeholder => 'Notas, curiosidades, agradecimentos...'
+  .label Classificação*
+  = f.select :classification_id, @classifications.map {|c| [c.name,c.id]}, prompt: 'Selecione classificação'  
+  .label 
+    Categorias*
+    .add Adicionar
+    .remove Limpar tudo
+  %table
     %tr
-      %td.label Tipo de Publicação* :
-      %td= select(:history, :historytype, options_for_select([['História', 1], ['História em quadrinhos', 2]]), prompt: 'Selecione o tipo de história')
-    %tr
-      %td.label Título* :
-      %td= f.text_field :title
-    %tr
-      %td.label Descrição:  
-      %td= f.text_field :description
-    %tr
-      %td.label Classificação* :  
-      %td= f.select :classification_id, @classifications.map {|c| [c.name,c.id]}, prompt: 'Selecione classificação'
-    %tr
-      %td.label Categorias* :
-      %td.category1
-        = collection_select(:history, :category_ids, Category.all, :id, :addcategory, prompt: 'Selecione categoria')
-        .combo1 +
-      %td.category2
-        = collection_select(:history, :category_ids, Category.all, :id, :addcategory, prompt: 'Selecione categoria')  
-    %tr
-      %td.label Comentário do Autor:      
-      %td= f.text_field :note
-    %tr.history
-      %td.label História* :  
-      %td= f.text_area :ahistory, cols:"50", id: '1'
-    %tr.comic
-      %td.label História em quadrinhos* :  
-      %td= file_field_tag :data_stream, id: '2'
+      %td.category
+        = f.collection_select :category_ids, Category.all, :id, :addcategory, {multiple: true, prompt: 'Selecione categoria'}, name: 'history[category_ids][]'
+      %td.categories
+    %tr.history  
+      %td
+        .label História*
+        = f.text_area :ahistory, cols:"50", id: '1'
+    %tr.comic 
+      %td
+        .label História em quadrinhos*
+        = file_field_tag :data_stream, id: '2'
   .actions
-    = f.submit
+    = f.submit class: 'submit', value: 'Publicar'

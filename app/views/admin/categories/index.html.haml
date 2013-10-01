@@ -1,17 +1,17 @@
 #background
   %center
     %h2 Todas categorias
-    = link_to 'Adicionar nova categoria', new_admin_category_path, class:"colored"
+    = button_to 'Adicionar nova categoria', new_admin_category_path, method: :get, class:'greenButon'
     %table.listing
       %thead
         %tr
           %td Título
-          %td Editar?
-          %td Apagar?
+          %td 
+          %td 
       #categoryList
       %tbody
         - @categories.each do |category|
           %tr
             %td.t= category.addcategory
-            %td.t= button_to 'Editar', edit_admin_category_path(category), method: :get
-            %td.t= button_to 'Apagar', "/admin/categories/#{category.id}", method: :delete
+            %td.t= button_to 'Editar', edit_admin_category_path(category), method: :get, class:'blueButton'
+            %td.t= button_to 'Apagar', "/admin/categories/#{category.id}", method: :delete, class:'redButton'

@@ -6,10 +6,11 @@ class History < ActiveRecord::Base
 	has_many :favorites, :dependent => :destroy
 	has_many :rates, :dependent => :destroy
   has_one :comic, :dependent=> :destroy
+  accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: proc{|attrs| attrs['id'].blank?}
 
-	attr_accessible :ahistory, :description, :note, :title, :category_ids, :classification_id, :user_id, :moderate, :historytype, :data_stream
-
-	validates :title, presence: true, length: {maximum:70}
+	attr_accessible :ahistory, :description, :note, :title, :category_ids, :classification_id, :user_id, :moderate, :historytype, :data_stream, :category_attributes
+	
+  validates :title, presence: true, length: {maximum:70}
 	validate :description, allow_blank: true, allow_nil: false
 	validate :note, allow_blank: true, allow_nil: false
   validates :historytype, presence: true

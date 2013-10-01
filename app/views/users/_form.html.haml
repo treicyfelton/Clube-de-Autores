@@ -1,30 +1,31 @@
+= link_to "Já tem um conta? Acesse!", "/entrar"
 = form_for(@user) do |f|
   - if @user.errors.any?
     #error_explanation
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-  %table.form
-    %tr
-      %td.label Nome* :
-      %td= f.text_field :name
-    %tr
-      %td.label Email* :
-      %td= f.text_field :email
-    %tr
-      %td.label Nome de usuário* :
-      %td= f.text_field :nick
-    %tr
-      %td.label Senha* :  
-      %td= f.password_field :plain_password
-    %tr
-      %td.label Data de nascimento* :  
-      %td= f.date_select :born_at, start_year: 100.years.ago.year, end_year: 1.years.ago.year, prompt: {day: '--Dia--', month: '--Mês--', year: '--Ano--'}
-    %tr
-      %td.label Situação:  
-      %td= select(:user, :situation, options_for_select([['Criando o tempo todo.'], ['Aguarde... escrevendo...'], ['Sempre online e ignorando você!'], ['Caçando dragões!'], ['Comendo cereal.'], ['Lendo revistinhas.'], ['Curtindo um som maneiro!'], ['Joando videogame.'], ['Cuidando da minha vida...'], ['Dormindo.'], ['Lendo histórias!'], ['Voando.'], ['Esperando o horário de almoço!'], ['Papeando...']]), prompt: '--Selecionar situação--')
-    %tr
-      %td.label Passatempo:  
-      %td= f.text_field :hobby 
+  
+  .description Quem é você?
+
+  .label Nome*
+  = f.text_field :name, :placeholder => 'Nome completo'
+  .label Data de Nascimento*
+  = f.date_select :born_at, start_year: 100.years.ago.year, end_year: 1.years.ago.year, prompt: {day: 'Dia', month: 'Mês', year: 'Ano'}
+  .label Passatempo
+  = f.text_field :hobby, :placeholder => 'Escrever, sair com amigos...'
+  .label Situação
+  = select(:user, :situation, options_for_select([['Criando o tempo todo.'], ['Aguarde... escrevendo...'], ['Sempre online e ignorando você!'], ['Caçando dragões!'], ['Comendo cereal.'], ['Lendo revistinhas.'], ['Curtindo um som maneiro!'], ['Joando videogame.'], ['Cuidando da minha vida...'], ['Dormindo.'], ['Lendo histórias!'], ['Voando.'], ['Esperando o horário de almoço!'], ['Papeando...']]), prompt: 'Selecionar situação')
+
+  .description2 Defina suas informações de conta — e não se esqueça delas!
+  
+  .label Email*
+  = f.text_field :email, :placeholder => 'alguma_coisa@exemplo.com'
+  .label Senha*
+  .ps (Entre 4 e 15 caracteres)
+  = f.password_field :plain_password, :placeholder => 'Senha'
+  .label Nome de Usuário*
+  = f.text_field :nick, :placeholder => 'Nome de usuário'
+  
   .actions
-    = f.submit
+    = f.submit class: 'submit', value: 'Aceitar'

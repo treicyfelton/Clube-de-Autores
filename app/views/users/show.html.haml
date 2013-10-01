@@ -1,27 +1,24 @@
-#background
-  %h2 
-    Perfil do usuário: #{@user.name}
-  #profile
-    %table
-      %thead
-        %tr
-          %td Nome
-          %td Data de nascimento
-          %td Situação
-          %td Passatempo
-      %tbody
-        %tr  
-          %td.t= @user.name
-          %td.t= @user.born_at
-          %td.t= @user.situation
-          %td.t= @user.hobby
-    
-    %table.show
-      %thead
-        %tr
-          %td Todas Histórias de #{@user.nick}
-      %tbody    
-        - @histories.each do |h|
-          %tr
-            %td.t
-              = link_to h.title, h, class:"colored"
+.profile
+  .name
+    =@user.name
+  .date
+    = @user.born_at
+  .end  
+  %table
+    %tr
+      %td.title Passatempo:
+      %td= @user.hobby
+    %tr
+      %td.title Situação:
+      %td= @user.situation
+  
+  .allHistories Todas Histórias de #{@user.nick}
+%table.show
+  %thead
+    %tr
+      %td 
+  %tbody    
+    - @histories.each do |h|
+      %tr
+        %td.t
+          = link_to h.title, h

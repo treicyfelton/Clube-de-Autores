@@ -1,27 +1,29 @@
-#background
-  %h2
-    Filtrando histórias de 
-    = @category.addcategory
-    %br
-    = paginate @histories
+%h2
+  Filtrando histórias de 
+  = @category.addcategory
+  %br
+  = paginate @histories
 
-  %a{:href => "http://www.submarino.com.br/loja/309573/livros?WT.mc_id=menuIconeOver-Livros&WT.mc_ev=click"}
-    #advertising_horizontal
-    
+%a{:href => "http://www.submarino.com.br/loja/309573/livros?WT.mc_id=menuIconeOver-Livros&WT.mc_ev=click"}
+  #advertising_horizontal
   
-  -@histories.each do |history|
-    #historyList
-      = link_to history.title, history
-      %br
-      por 
-      - u = User.find(history.user_id)
-      = link_to u.name, u
-      %br
-      Categorias:
-      - Category.find(history.category_ids).each do |ct|
-        = ct.addcategory
-      %br
-      Classificação:
-      - cl = Classification.find(history.classification_id)
-      = cl.name
 
+.historiesList
+  .positionList
+    -@histories.each do |history|
+      .historyList
+        .title
+          = link_to history.title, history, class:'title'
+          %br
+          Por 
+          - u = User.find(history.user_id)
+          = link_to u.name, u, class:'author'
+        .truncate
+          Categorias:
+          - Category.find(history.category_ids).each do |ct|
+            = ct.addcategory
+        Classificação:
+        - cl = Classification.find(history.classification_id)
+        = cl.name
+        .truncate= history.description
+.end    

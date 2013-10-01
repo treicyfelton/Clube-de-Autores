@@ -1,24 +1,20 @@
-#background
-  %h2 
-    Suas histórias
-  #unpublished= link_to 'Histórias recusadas', "/all/unpublished"
-  - if notice
-    #createdHistory= notice
-  %table.listing
-    %thead
+%h2 
+  Suas histórias
+.unpublished= button_to 'Suas histórias recusadas', "/all/unpublished", method: :get, class:'blueButton'
+- if notice
+  .createdHistory= notice
+%table.listing
+  %thead
+    %tr
+      %td Título
+      %td
+      %td          
+  %tbody        
+    - History.where("user_id = #{session[:id]}").each do |history| 
       %tr
         %td
-          Título
-        %td
-          Editar?
-        %td
-          Deletar? 
-    %tbody        
-      - History.where("user_id = #{session[:id]}").each do |history| 
-        %tr
-          %td
-            = link_to history.title, history, class:"colored"
-          %td.t
-            = button_to "Editar", "/histories/#{history.id}/edit", method: :get  
-          %td.t
-            = button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete
+          = link_to history.title, history
+        %td.t
+          = button_to "Editar", "/histories/#{history.id}/edit", method: :get, class:'blueButton'
+        %td.t
+          = button_to 'Deletar', {:controller=>"histories", :action=>"destroy", :id=> history.id}, method: :delete, class:'redButton'

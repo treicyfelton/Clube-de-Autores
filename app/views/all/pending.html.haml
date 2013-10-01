@@ -1,8 +1,8 @@
 #background
   %h2 Histórias com moderação pendente
   - if notice
-    #modered= notice
-  %table#listing
+    .modered= notice
+  %table.listing
     %thead
       %tr
         %td
@@ -15,4 +15,4 @@
           %td
             = link_to ph.title, ph, class:"colored"
           %td.t
-            = button_to "Moderar", "/histories/#{ph.id}", method: :get
+            = button_to "Moderar", "/histories/#{ph.id}", method: :get, class:'blueButton'

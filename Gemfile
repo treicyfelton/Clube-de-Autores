@@ -5,8 +5,8 @@ gem 'haml'
 gem 'kaminari'
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'jquery-rails'
-gem 'mini_magick'
 gem 'jquery-datatables-rails'
+gem 'mini_magick'
 
 group :development do
   gem 'sqlite3'

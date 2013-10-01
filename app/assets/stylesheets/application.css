@@ -1,7 +1,14 @@
 /*
 = require Layout
+= require Design
+= require form
+= require home
+= require historyList
+= require historyPage
+= require profile
+= require index
+= require notices
 = require fav
 = require rating
-= require jimgMenu
 = require jquery.dataTables
 */

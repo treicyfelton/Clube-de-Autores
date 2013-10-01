@@ -1,61 +1,169 @@
 body
+  background: #FCF3E4
+  color: #1F130D
+  font: 14px 'Arial', Helvetica, sans-serif
   height: 100%
   margin: 0
+  padding: 0
+  a
+    color: #76a712
+    font-weight: bold
+    text-decoration: none
+  h2
+    margin-bottom: 20px
+    text-align: center    
 
 header
   position: relative
   z-index: 100
   .top 
-    background: #2e2e2e
+    background: #513F37
     padding: 35px 0 39px 
-    .main
-      margin: 0 auto
-      position: relative
-      width: 940px
+    height: 65px
+  
+.main
+  margin: 0 auto
+  position: relative
+  width: 940px
 
 header
-  h1
+  .logo
     display: block
     float: left
     margin-left: -1px
     padding: 0 
+  .links 
+    color: #fff
+    padding-right: 280px
+    padding-top: 27px
+    text-align: right
+    a
+      color: #fff
+      font-weight: bold
+      text-decoration: none
+      &:hover
+        color: #76a712
+    .sair
+      color: #F08080
+      font-weight: bold
+      text-decoration: none
+      &:hover
+        color: #76a712   
 
 header
-  h1
+  .logo
     a
-      background: url() 0 0 no-repeat
+      background: url('top.png') 0 0 no-repeat
       display: inline-block
-      height: 66px
+      height: 77px
+      line-height: 18px
       text-indent: -999em
-      width: 228px
+      width: 337px
 
-#search
+.searchForm
   background: #dfdfdf
   float: right
   height: 37px
   margin-top: 27px
-  overflow: hidden 
-  
-#search
-  #searchbox
-    width: 178px
-    font-size: 12px
-    color: #838383
-    padding: 10px 10px 11px
-    margin: 0
-    outline: none
-    resize: none
-    position: relative
-    background: none
-    -webkit-background-clip: padding-box
-    height: 16px
-    border: none
-    border-radius: 0
-    box-shadow: none
-    display: inline-block
-    -webkit-transition: all 0.3s ease
-    -moz-transition: all 0.3s ease
-    -o-transition: all 0.3s ease
-    transition: all 0.3s ease
-    float: left
+  overflow: hidden
 
+.searchForm .searchbox
+  background: none
+  border: none
+  border-radius: 0
+  box-shadow: none
+  color: #838383
+  display: inline-block
+  float: left
+  font-size: 16px
+  height: 20px  
+  margin: 0
+  outline: none
+  padding: 17px 10px 11px
+  position: relative  
+  resize: none 
+  width: 178px
+  -webkit-background-clip: padding-box
+
+.submitsearch
+  background: #76a712
+  border: 0
+  cursor: pointer
+  color: #fff
+  display: inline-block
+  float: right
+  height: 37px
+  line-height: 7px
+  margin: 0
+  padding: 0px 13px 0px
+  text-transform: uppercase
+  z-index: 20
+
+nav
+  background: url('tail-row-navteste.png') repeat-x 0 0 #353434
+  font-weight: bold
+  height: 50px
+  letter-spacing: 2px
+  margin: 0 auto
+  padding: 0 auto
+  text-align: center
+
+ul
+  margin: 0  
+
+nav ul li 
+  display: inline-block
+  position: relative
+
+li ul
+  left: 0
+  display: none
+
+nav ul li a
+  border-left: 1px solid #54483F
+  border-right: 1px solid #736256  
+  color: #fff
+  display: inline-block
+  font-weight: bold
+  line-height: 45px
+  margin-left: -3px
+  margin-right: -3px
+  margin-top: 1px
+  padding: 2px 40px
+  text-decoration: none 
+  
+
+nav ul li a:hover
+  background-color: #9E8678
+  text-decoration: none
+  -webkit-transition: background 0.7s ease
+  -moz-transition: background 0.7s ease
+  -o-transition: background 0.7s ease
+  transition: background 0.7s ease
+
+
+.all
+  margin: 0 auto
+  width: 900px
+
+.content
+  padding: 5px
+
+footer
+  background: #513F37
+  padding: 26px 0
+  .footertext
+    color: #757575
+    font-size: 12px
+    line-height: 24px
+    a
+      a
+      color: #fff
+      text-decoration: none
+      &:hover
+        color: #76a712
+    .footerlogo
+      background: url('footer.png') 0 0 no-repeat
+      height: 45px
+      text-indent: -999em
+      width: 205px     

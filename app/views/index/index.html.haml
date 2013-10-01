@@ -1,71 +1,68 @@
-#background
-  #highlights
-    %table.highlights
-      %tr
-        %td
-          %img{:src => "crown.png"}
-          TOP HISTÓRIAS 
-          %img{:src => "crown.png"} 
-      %tr
-        %td
-          - for t in (0..10)
-            - if @top[t]
-              = link_to @top[t], "histories/#{@top_id[t]}"
-              %br
-             
-    %br
-    %br
-    %table.highlights
-      %tr
-        %td
-          %img{:src => "crown.png"}
-          TOP USUÁRIOS 
-          %img{:src => "crown.png"}
-      %tr
-        %td
-          - for a in (0..10)
-            -if @topauthors[a]
-              = link_to @topauthors[a], "users/#{@topauthors_nick[a]}"
-              %br
+.welcome
+  .img
+    %img{src:'highlight.jpg', width:'400', height:'250'}
+  .text
+    .title
+      Olá escritor, olá leitor!
+    Seja bem vindo ao Clube de Autores! Aqui suas histórias ganham vida e um grande mundo de fantasia te espera!
+    = button_to 'Saiba mais', '/rules/1', method: :get
+.end    
 
-  %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase => "http://fpdownloadocument.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0", :height => "300", :width => "100"}
-    %param{:name => "movie", :value => "http://ads.img.globo.com/RealMedia/ads/Creatives/globocom/127708_20130924_163646.971/adm-midBanner300x100.swf/1380055281"}
-    %param{:name => "quality", :value => "high"}
-    %param{:name => "flashvars", :value => "lnk=http://ads.globo.com/RealMedia/ads/click_lx.ads/globo.com/globo.com/home/L24/1231732334/Bottom3/globocom/127708_20130924_163646.971/adm-midBanner300x100.htm/757847747831497034387741424d436c&url=http://ads.globo.com/RealMedia/ads/click_lx.ads/globo.com/globo.com/home/L24/1231732334/Bottom3/globocom/127708_20130924_163646.971/adm-midBanner300x100.htm/757847747831497034387741424d436c"}
-    %param{:name => "AllowScriptAccess", :value => "always"}
-    %param{:name => "wmode", :value => "transparent"}
-    %embed{:allowscriptaccess => "always", :flashvars => "lnk=http://ads.globo.com/RealMedia/ads/click_lx.ads/globo.com/globo.com/home/L24/968687944/Bottom3/globocom/127708_20130924_163646.971/adm-midBanner300x100.htm/757847747831497034387741424d436c&amp;url=http://ads.globo.com/RealMedia/ads/click_lx.ads/globo.com/globo.com/home/L24/968687944/Bottom3/globocom/127708_20130924_163646.971/adm-midBanner300x100.htm/757847747831497034387741424d436c", :height => "100", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :quality => "high", :src => "http://ads.img.globo.com/RealMedia/ads/Creatives/globocom/127708_20130924_163646.971/adm-midBanner300x100.swf/1380055281", :type => "application/x-shockwave-flash", :width => "300", :wmode => "transparent"}/
+.index
+  .title 
+    %img{src:'crown.png'}
+    Top Histórias
 
-  %iframe{:frameborder => "0", :height => "250", :scrolling => "no", :src => "http://www.oquerola.com/wp-content/uploads/2013/09/animation1.swf", :width => "300"}
+  .tops
+    - for t in (0..10)
+      - if @top[t]
+        .topHList
+          = link_to @top[t], "histories/#{@top_id[t]}"
+    .end    
 
-  
-  / #slide
-  /   #slideshowHolder
-  /     %img{:alt => "Não pague micos, evite ser reportado: leia as regras!", :src => "img1.jpg"}
-  /       %a{:href => "/rules/1"}
-  /     %img{:alt => "Cadastre-se agora!", :src => "img2.jpg"}
-  /       %a{:href => "/users/new"}
-  /     %img{:alt => "Publique uma nova história!", :src => "img3.jpg"}
-  /       %a{:href => "/nova_historia"} 
+  .title 
+    %img{src:'crown.png'}
+    Top Autores
 
-  #lasts
-    %table
-      %tr
-        %td.title E as últimas...
-        %td.title
-      %tr
-        %td.lastUserTitle
-          Último usuário cadastrado:
-        %td.lastHistoryTitle
-          Última história publicada:
-      %tr      
-        %td.lastUser
+  .tops
+    - for a in (0..10)
+      -if @topauthors[a]
+        .topHList
+          = link_to @topauthors[a], "users/#{@topauthors_nick[a]}"
+    .end
+
+.last
+  .ad
+    %iframe{:frameborder => "0", :height => "250", :scrolling => "no", :src => "http://www.oquerola.com/wp-content/uploads/2013/09/animation1.swf", :width => "300"}
+
+  .lastsInfo
+    .lasts
+      .user
+        .img
+          image here
+        .text  
           - if @lastUser
-            = link_to @lastUser.name, "/users/#{@lastUser.id}"
+            .title
+              Último usuário cadastrado
+            = link_to @lastUser.name, "/users/#{@lastUser.id}", class:'name'
+            %br
+            Passatempo: 
+            =@lastUser.hobby
           - else
-            Ninguém ;(  
-        %td.lastHistory
-          - if @lastHistory
-            = link_to @lastHistory.title, "/histories/#{@lastHistory.id}"
+            Ninguém
+      .hist 
+        .text2
+          - if @lastHistory 
+            .title2
+              Última história publicada
+            = link_to @lastHistory.title, "/histories/#{@lastHistory.id}", class:'name2'
+            %br
+            .author
+            por
+            -User.find(@lastHistory.id) do |u|
+              =link_to u.name, u
           - else
-            Nenhuma ;(  
+            Nenhuma
+        .img2
+          image here   
+.end            

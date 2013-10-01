@@ -3,18 +3,14 @@
 
 //= require rating
 //= require fav
-//= require jqFancyTransitions
-//= require jquery-easing-1.3.pack
-//= require jquery-easing-compatibility.1.2.pack
 //= require fb-root
 //= require google
-//= require newhistory
+//= require history
 //= require tables
 //= require jquery.dataTables
 //= require admin_menu
 //= require background
-
 //= require histories
-//= require index
-//= require all
+//= require jquery.slides.min
+
 //= require_tree .

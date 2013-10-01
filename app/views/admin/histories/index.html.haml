@@ -8,6 +8,6 @@
     %tbody  
       - @histories.each do |history|
         %tr
-          %td.t= link_to history.title, history, class:"colored"
-          %td.t= link_to User.find(history.user_id).name, "/users/#{history.user_id}", class:"colored"
-          %td.t= button_to 'Deletar', "/admin/histories/#{history.id}", method: :delete
+          %td.t= link_to history.title, history
+          %td.t= link_to User.find(history.user_id).name, "/users/#{history.user_id}"
+          %td.t= button_to 'Deletar', "/admin/histories/#{history.id}", method: :delete, class:'redButton'

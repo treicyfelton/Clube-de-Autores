@@ -7,8 +7,6 @@
       %ul
         - @rule.errors.full_messages.each do |msg|
           %li= msg
-  %table.form
-    %tr    
-      %td= f.text_area :uprules, cols:"80"
+  = f.text_area :uprules, cols:"80", class:'rulesbox'
   .actions
-    = f.submit
+    = f.submit class: 'submit', value: 'Atualizar'

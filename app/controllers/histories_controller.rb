@@ -4,8 +4,8 @@ class HistoriesController < ApplicationController
   before_filter :toIndex, only: [:index]
   before_filter :userLogged?, only: [:new, :create, :edit, :update, :destroy, :rate, :favoriteChecked]
   before_filter :load_classifications, only: [:new, :edit, :update, :create]
-  after_filter :save_image, :only=>[:create,:update]
-  layout :selectlayout  
+  after_filter :save_image, only: [:create, :update]
+  layout :selectlayout
   
   def index
     @histories = History.all
@@ -65,6 +65,7 @@ class HistoriesController < ApplicationController
   def create
     @history = currentUser.histories.new(params[:history])
     @history.moderate = 0
+    @history.updateHistory = Time.now
     
     if @history.save
       flash[:notice] = "História criada com sucesso, aguarde aprovação."
@@ -79,6 +80,7 @@ class HistoriesController < ApplicationController
     params[:history][:category_ids] ||= []
     @history = History.find(params[:id])
     @history.moderate = 0
+    @history.updateHistory = Time.now
     @history.update_attributes(params[:history])
     flash[:notice] = "História atualizada com sucesso, aguarde aprovação."
     redirect_to "/all/histories"

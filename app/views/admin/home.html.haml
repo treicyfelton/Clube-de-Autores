@@ -16,15 +16,25 @@
       %li.home= link_to 'Enviar Nova História', "/histories/new"
       %li.home= link_to 'Suas Histórias', "/all/histories"
 
-  .separator
+
     %table.homeTables
-      %th Histórias atualizadas recentemente
-      %th Favoritos
-      - for i in (0..5)
-        - if @upHistories[i]
-          %tr
-            %td#up
-              = link_to @upHistories[i], "/histories/#{@upHistoriesId[i]}"
-              - if @favHistories[i]
-                %td= link_to @favHistories[i], "/histories/#{@hId[i]}", class:"black"
-                %td.delete= button_to 'Excluir', {:controller=>"favorites", :action=>"destroy",:id => @favId[i]}, method: :delete
+      %thead
+        %tr
+          %td Histórias atualizadas recentemente
+      %tbody
+        - for i in (0..@upHistories.size)
+          - if @upHistories[i]
+            %tr
+              %td= link_to @upHistories[i], "/histories/#{@upHistoriesId[i]}"
+
+    %table.homeTables
+      %thead
+        %tr
+          %td Favorite
+      %tbody
+        - for i in (0..@favHistories.size)
+          -if @favHistories[i]
+            %tr
+              %td= link_to @favHistories[i], "/histories/#{@hId[i]}"
+              / %td= button_to 'Excluir', {:controller=>"favorites", :action=>"destroy",:id => @favId[i]}, method: :delete 
+    

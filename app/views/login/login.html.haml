@@ -1,14 +1,12 @@
-#background
-  %h2 Acessar conta
-  #msgSpace
-    = link_to "Ainda não tem uma conta? Clique aqui e cadastre-se!", "/users/new"
-  #notice= notice
+%h2 Acessar conta
+.notice= notice
+.centralize
   = form_tag "/entrar" do
     %p
-      %label{:for => "email"} Email:
-      %input#email{:name => "email", :type => "text"}/
+      %input{:id => 'email', :name => "email", :type => "text", :placeholder => 'Email'}/
     %p
-      %label{:for => "password"} Senha:
-      %input#password{:name => "password", :type => "password"}/
+      %input{:id => 'pass', :name => "password", :type => "password", :placeholder => 'Senha'}/
     %p
-      %input{:type => "submit", :value => "Entrar"}/
+      %input{:type => "submit", :value => "Entrar", class: 'submit'}/
+
+= link_to "Ainda não tem uma conta? Clique aqui e cadastre-se!", "/users/new"

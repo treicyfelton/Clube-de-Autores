@@ -14,15 +14,15 @@ class ApplicationController < ActionController::Base
       "admin"
     else
       if session[:id] && !session[:admin]
-      "user"
+        "user"
       else
         if !session[:id]
-        "pub"
+          "pub"
         end
       end
     end
   end
-
+  
   def toIndex
     if !session[:id]
       redirect_to "/" 

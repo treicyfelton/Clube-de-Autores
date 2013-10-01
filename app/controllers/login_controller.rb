@@ -11,7 +11,7 @@ class LoginController < ApplicationController
 	end
 
 	if email.blank? && password.blank?
-		flash[:notice] = "Informe email e senha"
+		flash.now.alert = "Informe email e senha"
 		return
 	end
 

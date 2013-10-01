@@ -5,34 +5,38 @@
     = csrf_meta_tags
   %body
     %header
-      #top
-        #center
-          #logo
-            LOGO AQUI
-          #search
-            Pesquise aqui: 
-            = form_tag :controller => 'histories', :action => 'search', :method => 'get' do
-              = text_field_tag :search, params[:search], :id => 'search_field', class:"searchbox"
-              = submit_tag "Buscar", :name => nil
-          #links 
+      .top
+        .main
+          .logo
+            %a{:href => "/"}
+              Clube de Autores
+          .searchForm
+            = form_tag controller:'/histories', action:'search', method: :get do
+              = text_field_tag :search, params[:search], id:'search_field', class:'searchbox'
+              = submit_tag "Buscar", class:'submitsearch'
+          .links 
             Logado como:
             - u = User.find(session[:id])
             = link_to session[:name], "/users/#{u.nick}"
-            | 
-            =link_to "Sair?", sair_path
+            %br
+            =link_to "Sair", sair_path, class:"sair"
       %nav
-        %ul
-          %li=link_to "Início", "/"
-          %li=link_to "Histórias", "/all/categories"
-          %li=link_to "Regras", "/rules/1"
-          %li=link_to "Enviar história", "/histories/new"
-          %li=link_to "Sua página", "/admin/home"
-    #yield
-      = yield
+        .main
+          %ul
+            %li=link_to "Início", "/"
+            %li=link_to "Histórias", "/all/categories"
+            %li=link_to "Regras", "/rules/1"
+            %li=link_to "Enviar história", "/histories/new"
+            %li=link_to "Sua página", "/admin/home"
+    .all
+      .content
+        = yield
 
     %footer
-      #center
-        %ul
-          %li LOGO AQUI
-          %li Julho/2013
-          %li= link_to "Contato", "/contacts/new"
+      .main
+        .footertext
+          .footerlogo
+            %a{:href => "/"}
+              Clube de Autores
+          Julho de 2013 |
+          = link_to 'Contato', '/contacts/new'

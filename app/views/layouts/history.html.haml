@@ -1,0 +1,43 @@
+%html
+  %head
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %header
+      .top
+        .main
+          .logo
+            %a{:href => "/"}
+              Clube de Autores
+          .searchForm
+            = form_tag controller:'histories', action:'search', method: :get do
+              = text_field_tag :search, params[:search], id:'search_field', class:'searchbox'
+              = submit_tag "Buscar", class:'submitsearch'
+          .links 
+            Logado como:
+            - u = User.find(session[:id])
+            = link_to session[:name], "/users/#{u.nick}"
+            %br
+            =link_to "Sair", sair_path, class:"sair"
+      %nav
+        .main
+          %ul
+            %li=link_to "Início", "/"
+            %li=link_to "Histórias", "/all/categories"
+            %li=link_to "Regras", "/rules/1"
+            %li=link_to "Enviar história", "/histories/new"
+            %li=link_to "Sua página", "/admin/home"
+    .all
+      .content
+        Pagina de Historia
+        = yield
+
+    %footer
+      .main
+        .footertext
+          .footerlogo
+            %a{:href => "/"}
+              Clube de Autores
+          Julho de 2013 |
+          = link_to 'Contato', '/contacts/new'
