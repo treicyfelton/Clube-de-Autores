@@ -26,12 +26,12 @@
     .note
       Nota do Autor:
       = @history.note
-    - if session[:id]
+    - if session[:id] && @history.moderate == 2
       .favorite   
         Adicionar aos favoritos
         #heart-fav
           %input.fav{:name => "Favorite", :type => "radio", :value => "1"}
-    - if session[:id]
+    - if session[:id] && @history.moderate == 2
       .rating
         Votar nessa história
         #star-rating

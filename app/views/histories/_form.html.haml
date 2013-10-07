@@ -22,8 +22,8 @@
     .add Adicionar
     .remove Limpar tudo
   %table
-    %tr
-      %td.category
+    %tr.category
+      %td
         = f.collection_select :category_ids, Category.all, :id, :addcategory, {multiple: true, prompt: 'Selecione categoria'}, name: 'history[category_ids][]'
       %td.categories
     %tr.history  

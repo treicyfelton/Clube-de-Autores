@@ -4,15 +4,12 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-  %table.form
-    %tr
-      %td.label Nome* :
-      %td= f.text_field :name
-    %tr
-      %td.label Moderador de Histórias:  
-      %td= check_box_tag :moderator  
-    %tr
-      %td.label Administrador:  
-      %td= check_box_tag :admin
+  .label Nome*
+  = f.text_field :name
+  .label Moderador de Histórias
+  = check_box_tag :moderator
+  .label Administrador
+  = check_box_tag :admin
+
   .actions
-    = f.submit
+    = f.submit class: 'submit', value: 'Atualizar'

@@ -15,7 +15,7 @@ class AdminController < ApplicationController
     @upHistoriesId ||= []
     Favorite.where("user_id = #{session[:id]}").each do |r|
       @a = History.find(r.history_id)
-      if @a.updated_at != @a.created_at
+      if @a.updateHistory > @a.created_at
         @upHistories << @a.title
         @upHistoriesId << @a.id
       end

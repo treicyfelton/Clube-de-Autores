@@ -30,11 +30,13 @@
     %table.homeTables
       %thead
         %tr
-          %td Favorite
+          %td Favoritos
       %tbody
         - for i in (0..@favHistories.size)
           -if @favHistories[i]
             %tr
-              %td= link_to @favHistories[i], "/histories/#{@hId[i]}"
-              / %td= button_to 'Excluir', {:controller=>"favorites", :action=>"destroy",:id => @favId[i]}, method: :delete 
-    
+              %td
+                = link_to @favHistories[i], "/histories/#{@hId[i]}"
+                %br 
+                %br
+                = button_to 'Excluir', {:controller=>"favorites", :action=>"destroy",:id => @favId[i]}, method: :delete, class:'redButton'

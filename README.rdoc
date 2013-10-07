@@ -1,5 +1,3 @@
-Atualizando: Envio de história consertado.
 
-Atualizando: Sistema de votação pronto (cada usuário só vota uma única vez em cada história).
 
 
